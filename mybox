@@ -1,0 +1,561 @@
+<div id="familyTripBox" dir="rtl">
+<style>
+#familyTripBox {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #17324d;
+}
+
+#familyTripBox * {
+    box-sizing: border-box;
+}
+
+.ftb-hero {
+    background: linear-gradient(135deg, #e8f6ff, #f7fbff);
+    border: 1px solid #d7eaf5;
+    border-radius: 24px;
+    padding: 35px 25px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.ftb-hero h1 {
+    margin: 0 0 12px;
+    font-size: 34px;
+    color: #1769aa;
+}
+
+.ftb-hero p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.ftb-free {
+    display: inline-block;
+    margin-top: 18px;
+    background: #ffffff;
+    border: 1px solid #cfe4f2;
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-weight: bold;
+    color: #1769aa;
+}
+
+.ftb-card {
+    background: #fff;
+    border: 1px solid #e1e8ee;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.ftb-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.ftb-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.ftb-option {
+    border: 2px solid #dce6ed;
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s ease;
+    font-size: 16px;
+    font-weight: bold;
+    color: #24465f;
+}
+
+.ftb-option:hover {
+    border-color: #4ca3d9;
+    transform: translateY(-2px);
+}
+
+.ftb-option.selected {
+    border-color: #1769aa;
+    background: #eaf6ff;
+    color: #1769aa;
+}
+
+.ftb-option span {
+    display: block;
+    font-size: 27px;
+    margin-bottom: 7px;
+}
+
+.ftb-button {
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    background: #1769aa;
+    color: white;
+    padding: 17px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.ftb-button:hover {
+    background: #125789;
+}
+
+.ftb-button:disabled {
+    background: #b8c5ce;
+    cursor: not-allowed;
+}
+
+.ftb-message {
+    text-align: center;
+    color: #b04b3b;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.ftb-game {
+    display: none;
+    background: #f8fbfd;
+    border: 2px solid #d8eaf5;
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.ftb-game.visible {
+    display: block;
+}
+
+.ftb-game-label {
+    display: inline-block;
+    background: #e4f3fc;
+    color: #1769aa;
+    border-radius: 20px;
+    padding: 7px 13px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.ftb-game h2 {
+    font-size: 27px;
+    margin: 5px 0 12px;
+    color: #17324d;
+}
+
+.ftb-game p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.ftb-task {
+    background: #fff;
+    border-radius: 15px;
+    padding: 18px;
+    margin: 15px 0;
+    border: 1px solid #e2e8ed;
+}
+
+.ftb-task strong {
+    color: #1769aa;
+}
+
+.ftb-tip {
+    background: #fff8df;
+    border-right: 5px solid #e4b83f;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 18px;
+    line-height: 1.7;
+}
+
+.ftb-another {
+    background: #fff;
+    color: #1769aa;
+    border: 2px solid #1769aa;
+    margin-top: 12px;
+}
+
+.ftb-another:hover {
+    background: #eaf6ff;
+}
+
+@media (max-width: 650px) {
+    .ftb-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ftb-hero h1 {
+        font-size: 28px;
+    }
+
+    .ftb-card {
+        padding: 18px;
+    }
+}
+</style>
+
+<div class="ftb-hero">
+    <h1>הקופסה המשפחתית לטיול</h1>
+    <p>
+        משחקים ומשימות שהופכים את הדרך והטיול להרבה יותר כיפיים.
+        בלי מסכים, בלי הכנות מסובכות ובלי ציוד מיוחד.
+    </p>
+    <div class="ftb-free">10 משחקים חינמיים להתחלה</div>
+</div>
+
+<div class="ftb-card">
+    <div class="ftb-title">מה גיל הילדים?</div>
+
+    <div class="ftb-options" id="ageOptions">
+        <button type="button" class="ftb-option" data-age="3-5">
+            <span>👶</span>
+            3–5
+        </button>
+
+        <button type="button" class="ftb-option" data-age="6-8">
+            <span>🧒</span>
+            6–8
+        </button>
+
+        <button type="button" class="ftb-option" data-age="9-12">
+            <span>👦</span>
+            9–12
+        </button>
+    </div>
+</div>
+
+<div class="ftb-card">
+    <div class="ftb-title">איזה סוג פעילות?</div>
+
+    <div class="ftb-options" id="typeOptions">
+        <button type="button" class="ftb-option" data-type="car">
+            <span>🚗</span>
+            משחקי רכב
+        </button>
+
+        <button type="button" class="ftb-option" data-type="nature">
+            <span>🌳</span>
+            טבע
+        </button>
+
+        <button type="button" class="ftb-option" data-type="park">
+            <span>🛝</span>
+            פארק
+        </button>
+
+        <button type="button" class="ftb-option" data-type="family">
+            <span>👨‍👩‍👧‍👦</span>
+            כל המשפחה
+        </button>
+    </div>
+</div>
+
+<div class="ftb-card">
+    <button type="button" class="ftb-button" id="findGame">
+        🎲 מצאו לי משחק
+    </button>
+
+    <div class="ftb-message" id="ftbMessage"></div>
+</div>
+
+<div class="ftb-game" id="gameResult">
+    <div class="ftb-game-label" id="gameCategory"></div>
+    <h2 id="gameTitle"></h2>
+    <p id="gameDescription"></p>
+
+    <div id="gameTasks"></div>
+
+    <div class="ftb-tip" id="gameTip"></div>
+
+    <button type="button" class="ftb-button ftb-another" id="anotherGame">
+        🎲 משחק אחר
+    </button>
+</div>
+
+<script>
+(function () {
+
+    const games = [
+        {
+            id: 1,
+            type: "car",
+            ages: ["3-5", "6-8", "9-12"],
+            category: "🚗 משחק רכב",
+            title: "ציידי הדרך",
+            description: "מי יצליח למצוא ראשון כמה שיותר דברים בדרך?",
+            tasks: [
+                "מצאו מכונית אדומה",
+                "מצאו אוטובוס",
+                "מצאו משאית",
+                "מצאו אופנוע",
+                "מצאו מכונית בצבע שאתם אוהבים"
+            ],
+            tip: "על כל דבר שמוצאים מקבלים נקודה. הראשון שמגיע ל־5 נקודות מנצח."
+        },
+        {
+            id: 2,
+            type: "car",
+            ages: ["6-8", "9-12"],
+            category: "🚗 משחק רכב",
+            title: "בינגו כביש",
+            description: "כל ילד צריך למצוא את הפריטים הבאים במהלך הנסיעה.",
+            tasks: [
+                "רכב לבן",
+                "רכב עם גג נפתח",
+                "תחנת דלק",
+                "אופנוע",
+                "רמזור",
+                "משאית",
+                "אוטובוס"
+            ],
+            tip: "מי שמוצא 5 פריטים ראשונים צועק 'בינגו!'"
+        },
+        {
+            id: 3,
+            type: "car",
+            ages: ["3-5", "6-8", "9-12"],
+            category: "🚗 משחק רכב",
+            title: "מי רואה ראשון?",
+            description: "אחד ההורים מכריז על משהו שצריך למצוא. מי שמוצא ראשון מקבל נקודה.",
+            tasks: [
+                "מצאו עץ גדול",
+                "מצאו שלט כחול",
+                "מצאו רכב אדום",
+                "מצאו גשר",
+                "מצאו אופניים"
+            ],
+            tip: "אפשר להמציא משימות חדשות תוך כדי הנסיעה."
+        },
+        {
+            id: 4,
+            type: "nature",
+            ages: ["3-5", "6-8", "9-12"],
+            category: "🌳 משחק טבע",
+            title: "ציד האוצר בטבע",
+            description: "במהלך הטיול נסו למצוא כמה שיותר דברים מהרשימה.",
+            tasks: [
+                "עלה גדול",
+                "אבן מעניינת",
+                "פרח",
+                "חרק",
+                "עץ עם גזע עבה",
+                "משהו בצבע צהוב"
+            ],
+            tip: "לא צריך לקחת שום דבר מהטבע. פשוט מוצאים, מסתכלים וממשיכים."
+        },
+        {
+            id: 5,
+            type: "nature",
+            ages: ["6-8", "9-12"],
+            category: "🌳 משחק טבע",
+            title: "בלשי הטבע",
+            description: "הפכו את הילדים לבלשי טבע וחפשו רמזים מסביב.",
+            tasks: [
+                "מצאו סימן לכך שבעל חיים עבר כאן",
+                "מצאו 2 סוגים שונים של עצים",
+                "מצאו משהו חלק ומשהו מחוספס",
+                "מצאו משהו עגול",
+                "מצאו מקום שבו אפשר להסתתר"
+            ],
+            tip: "אפשר לתת 2 נקודות למשימה שקשה במיוחד למצוא."
+        },
+        {
+            id: 6,
+            type: "park",
+            ages: ["3-5", "6-8"],
+            category: "🛝 משחק פארק",
+            title: "משימת הפארק",
+            description: "הילדים צריכים להשלים סדרת משימות במתקני הפארק.",
+            tasks: [
+                "עלו במתקן הכי גבוה שמותר לכם",
+                "עשו 5 קפיצות",
+                "מצאו מגלשה",
+                "מצאו נדנדה",
+                "מצאו מקום לשבת ולנוח"
+            ],
+            tip: "התאימו תמיד את המשימות לגיל הילד ולכללי הבטיחות של הפארק."
+        },
+        {
+            id: 7,
+            type: "park",
+            ages: ["6-8", "9-12"],
+            category: "🛝 משחק פארק",
+            title: "אתגר 10 הדקות",
+            description: "יש לכם 10 דקות להשלים כמה שיותר משימות.",
+            tasks: [
+                "מצאו 3 מתקנים שונים",
+                "מצאו משהו בצבע כחול",
+                "עשו סיבוב אחד סביב אזור המשחקים",
+                "מצאו מקום מוצל",
+                "מצאו משהו שלא שמתם לב אליו קודם"
+            ],
+            tip: "אפשר לתת נקודה לכל משימה ולבדוק כמה נקודות המשפחה הצליחה לצבור."
+        },
+        {
+            id: 8,
+            type: "family",
+            ages: ["3-5", "6-8", "9-12"],
+            category: "👨‍👩‍👧‍👦 משחק משפחתי",
+            title: "מי מכיר את המשפחה?",
+            description: "כל אחד בתורו עונה על שאלה. לפני שעונים, שאר בני המשפחה צריכים לנחש מה תהיה התשובה.",
+            tasks: [
+                "מה המאכל האהוב עליי?",
+                "איזה מקום הייתי רוצה לבקר בו?",
+                "מה המשחק שאני הכי אוהב?",
+                "מה הייתי לוקח איתי לאי בודד?",
+                "מה הדבר שהכי מצחיק אותי?"
+            ],
+            tip: "הנקודה הולכת למי שהצליח לנחש נכון את התשובה."
+        },
+        {
+            id: 9,
+            type: "family",
+            ages: ["6-8", "9-12"],
+            category: "👨‍👩‍👧‍👦 משחק משפחתי",
+            title: "סיפור בהמשכים",
+            description: "כל אחד מוסיף משפט אחד לסיפור. המטרה היא ליצור סיפור מצחיק ומשוגע.",
+            tasks: [
+                "הראשון מתחיל: 'יום אחד יצאנו לטיול...'",
+                "השני מוסיף דמות",
+                "השלישי מוסיף בעיה",
+                "הרביעי מוסיף פתרון",
+                "בסוף כולם מחליטים איך הסיפור נגמר"
+            ],
+            tip: "ככל שהסיפור מצחיק ומפתיע יותר, המשחק נהיה טוב יותר."
+        },
+        {
+            id: 10,
+            type: "family",
+            ages: ["3-5", "6-8", "9-12"],
+            category: "👨‍👩‍👧‍👦 משחק משפחתי",
+            title: "מצא משהו ש...",
+            description: "ההורה נותן משימה, והילדים צריכים למצוא משהו שמתאים לה.",
+            tasks: [
+                "מצא משהו עגול",
+                "מצא משהו ירוק",
+                "מצא משהו גדול יותר ממך",
+                "מצא משהו שמתחיל באות מ׳",
+                "מצא משהו שהיית רוצה לקחת הביתה"
+            ],
+            tip: "אפשר לשנות את המשימות בהתאם למקום שבו אתם נמצאים."
+        }
+    ];
+
+    let selectedAge = "";
+    let selectedType = "";
+    let currentGames = [];
+
+    const ageButtons = document.querySelectorAll("#ageOptions .ftb-option");
+    const typeButtons = document.querySelectorAll("#typeOptions .ftb-option");
+
+    ageButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            ageButtons.forEach(function (b) {
+                b.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+            selectedAge = button.getAttribute("data-age");
+
+            document.getElementById("ftbMessage").textContent = "";
+        });
+    });
+
+    typeButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            typeButtons.forEach(function (b) {
+                b.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+            selectedType = button.getAttribute("data-type");
+
+            document.getElementById("ftbMessage").textContent = "";
+        });
+    });
+
+    function getMatchingGames() {
+        return games.filter(function (game) {
+            const ageMatch = game.ages.indexOf(selectedAge) !== -1;
+            const typeMatch = game.type === selectedType;
+            return ageMatch && typeMatch;
+        });
+    }
+
+    function showGame(game) {
+        document.getElementById("gameCategory").textContent = game.category;
+        document.getElementById("gameTitle").textContent = game.title;
+        document.getElementById("gameDescription").textContent = game.description;
+
+        const tasksContainer = document.getElementById("gameTasks");
+        tasksContainer.innerHTML = "";
+
+        game.tasks.forEach(function (task, index) {
+            const taskElement = document.createElement("div");
+            taskElement.className = "ftb-task";
+            taskElement.innerHTML =
+                "<strong>משימה " + (index + 1) + "</strong><br>" + task;
+            tasksContainer.appendChild(taskElement);
+        });
+
+        document.getElementById("gameTip").innerHTML =
+            "<strong>טיפ למשחק:</strong> " + game.tip;
+
+        document.getElementById("gameResult").classList.add("visible");
+
+        setTimeout(function () {
+            document.getElementById("gameResult").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }, 100);
+    }
+
+    document.getElementById("findGame").addEventListener("click", function () {
+
+        const message = document.getElementById("ftbMessage");
+
+        if (!selectedAge || !selectedType) {
+            message.textContent = "בחרו קודם את גיל הילדים ואת סוג הפעילות.";
+            return;
+        }
+
+        currentGames = getMatchingGames();
+
+        if (!currentGames.length) {
+            message.textContent = "לא מצאנו משחק מתאים. נסו גיל או פעילות אחרת.";
+            return;
+        }
+
+        const randomIndex = Math.floor(Math.random() * currentGames.length);
+        showGame(currentGames[randomIndex]);
+    });
+
+    document.getElementById("anotherGame").addEventListener("click", function () {
+
+        if (!currentGames.length) {
+            currentGames = getMatchingGames();
+        }
+
+        if (!currentGames.length) {
+            return;
+        }
+
+        let randomIndex = Math.floor(Math.random() * currentGames.length);
+
+        showGame(currentGames[randomIndex]);
+    });
+
+})();
+</script>
+</div>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>תחנה 1: מתחם הצפרות - אתגר גני יהושע</title>
+    
+    <!-- פונט Google Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --accent: #ff9800;
+            --accent-hover: #f57c00;
+            --bg-grad-1: #e8f5e9;
+            --bg-grad-2: #f1f8e9;
+            --text-main: #1a237e;
+            --text-muted: #455a64;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 16px;
+            color: #263238;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* Top Progress Bar */
+        .progress-header {
+            background: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .station-badge {
+            background: var(--bg-grad-1);
+            color: var(--primary-dark);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .score-counter {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+        }
+
+        .content-body {
+            padding: 0 20px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .station-title {
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+
+        .station-title h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hint-card {
+            background: #ffffff;
+            border-right: 4px solid var(--accent);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .hint-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hint-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .task-card {
+            background: #ffffff;
+            border: 1px solid rgba(46, 125, 50, 0.2);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .task-icon {
+            font-size: 1.5rem;
+            background: var(--bg-grad-1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .task-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .instruction-box {
+            background: var(--bg-grad-1);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* Checkbox list styled options */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 14px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: #e8f5e9;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #37474f;
+        }
+
+        .option-points {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            background: rgba(255, 152, 0, 0.12);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #b0bec5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .option-item.selected .radio-custom {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+
+        .option-item.selected .radio-custom::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+        }
+
+        /* Bonus Box */
+        .bonus-card {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .bonus-icon {
+            font-size: 1.5rem;
+        }
+
+        .bonus-text {
+            font-size: 0.85rem;
+            color: #5d4037;
+            line-height: 1.4;
+        }
+
+        .bonus-text strong {
+            color: #e65100;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* Action Buttons */
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.35);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .btn-primary:not(:disabled):active {
+            transform: scale(0.98);
+        }
+
+        .footer-nav {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- בר התקדמות עליון -->
+        <div class="progress-header">
+            <div class="station-badge">
+                <span>🐦</span>
+                <span>תחנה 1 מתוך 7</span>
+            </div>
+            <div class="score-counter">
+                <span>⭐ ניקוד מצטבר:</span>
+                <span id="currentScoreDisplay">0</span>
+            </div>
+        </div>
+
+        <!-- תמונת התחנה -->
+        <div class="hero-image-wrapper">
+            <img src="https://tinokotnet.files.wordpress.com/2016/03/girl-812482_640.jpg" alt="מתחם הצפרות" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- גוף התוכן -->
+        <div class="content-body">
+            
+            <div class="station-title">
+                <h1>🐦 תחנה 1 – מתחם הצפרות</h1>
+            </div>
+
+            <!-- כרטיס רמז למיקום -->
+            <div class="hint-card">
+                <div class="hint-title">
+                    <span>🔎</span>
+                    <span>רמז למציאת המקום</span>
+                </div>
+                <div class="hint-text">
+                    חפשו מקום שקט ומקורה ליד הירקון, שבו אפשר לעצור, להתבונן ולחפש ציפורים בסביבה.
+                </div>
+            </div>
+
+            <!-- משימת התחנה -->
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-icon">🎯</div>
+                    <div class="task-title">המשימה בשטח</div>
+                </div>
+
+                <div class="instruction-box">
+                    ⏱️ עמדו בשקט במשך 30 שניות והסתכלו סביבכם!
+                </div>
+
+                <p style="font-size: 0.9rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 12px;">
+                    כמה סוגי ציפורים הצלחתם למצוא?
+                </p>
+
+                <!-- אפשרויות בחירה לקבלת ניקוד -->
+                <div class="options-group" id="optionsGroup">
+                    <div class="option-item" data-points="3" onclick="selectOption(this, 3)">
+                        <div class="option-label">
+                            <div class="radio-custom"></div>
+                            <span>ציפור אחת 🐦</span>
+                        </div>
+                        <div class="option-points">+3 נקודות</div>
+                    </div>
+
+                    <div class="option-item" data-points="6" onclick="selectOption(this, 6)">
+                        <div class="option-label">
+                            <div class="radio-custom"></div>
+                            <span>שתי ציפורים 🐦🐦</span>
+                        </div>
+                        <div class="option-points">+6 נקודות</div>
+                    </div>
+
+                    <div class="option-item" data-points="10" onclick="selectOption(this, 10)">
+                        <div class="option-label">
+                            <div class="radio-custom"></div>
+                            <span>שלוש ציפורים שונות! 🐦🕊️🦜</span>
+                        </div>
+                        <div class="option-points">+10 נקודות</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- אתגר בונוס -->
+            <div class="bonus-card">
+                <div class="bonus-icon">📸</div>
+                <div class="bonus-text">
+                    <strong>אתגר בונוס משפחתי!</strong>
+                    צלמו את הציפור הכי מעניינת או המיוחדת שראיתם בתחנה למזכרת!
+                </div>
+            </div>
+
+            <!-- כפתור מעבר לתחנה הבאה -->
+            <button id="btnNext" class="btn btn-primary" disabled onclick="saveAndContinue()">
+                <span>לתחנה הבאה (הכדור הפורח)</span>
+                <span>⬅️</span>
+            </button>
+
+            <div class="footer-nav">
+                <br>
+                <a href="index.html" class="back-link">🔙 חזרה לדף הראשי</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- לוגיקת JavaScript לשמירה ומעבר -->
+    <script>
+        let selectedPoints = 0;
+        let gameData = {};
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // טעינת נתוני המשחק מ-localStorage
+            const savedGame = localStorage.getItem('parkChallenge_game');
+            
+            if (savedGame) {
+                try {
+                    gameData = JSON.parse(savedGame);
+                } catch(e) {
+                    console.error("שגיאה בטעינת נתונים", e);
+                }
+            }
+
+            // עדכון מציג הניקוד בראש הדף
+            const currentTotal = gameData.totalScore || 0;
+            document.getElementById('currentScoreDisplay').textContent = currentTotal;
+
+            // אם כבר ענו על התחנה הזו בעבר - טען את הבחירה
+            if (gameData.stations && gameData.stations['bird']) {
+                const prevPoints = gameData.stations['bird'].points;
+                const items = document.querySelectorAll('.option-item');
+                items.forEach(item => {
+                    if (parseInt(item.getAttribute('data-points')) === prevPoints) {
+                        selectOption(item, prevPoints);
+                    }
+                });
+            }
+        });
+
+        // פונקציית בחירת תשובה
+        function selectOption(element, points) {
+            // הסרת סימון מכל האפשרויות
+            document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+            
+            // סימון האפשרות הנבחרת
+            element.classList.add('selected');
+            selectedPoints = points;
+
+            // הפעלת כפתור המעבר
+            document.getElementById('btnNext').disabled = false;
+        }
+
+        // פונקציית שמירת הנתונים ומעבר לדף הבא
+        function saveAndContinue() {
+            if (selectedPoints === 0) return;
+
+            // עדכון נתוני הניקוד והתחנה הנוכחית
+            if (!gameData.stations) gameData.stations = {};
+            
+            // שמירת הניקוד הקודם של תחנה זו אם קיים (כדי למנוע כפילות חישוב)
+            const previousStationPoints = gameData.stations['bird'] ? gameData.stations['bird'].points : 0;
+            
+            gameData.stations['bird'] = {
+                completed: true,
+                points: selectedPoints,
+                completedAt: new Date().toISOString()
+            };
+
+            // חישוב ניקוד כולל מעודכן
+            gameData.totalScore = (gameData.totalScore || 0) - previousStationPoints + selectedPoints;
+            
+            // הגדרת התחנה הבאה במסלול
+            gameData.currentStation = 'balloon.html';
+            gameData.updatedAt = new Date().toISOString();
+
+            // שמירה בחזרה ל-localStorage
+            localStorage.setItem('parkChallenge_game', JSON.stringify(gameData));
+
+            // מעבר לדף התחנה הבאה (balloon.html)
+            const gameId = gameData.gameId || '';
+            window.location.href = `balloon.html?game=${gameId}`;
+        }
+    </script>
+</body>
+</html>

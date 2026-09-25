@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>תחנה 1: מתחם הצפרות - אתגר גני יהושע</title>
+    <meta name="theme-color" content="#2e7d32">
+    <title>תחנה 1: חוקרי הציפורים - אתגר גני יהושע</title>
+    <meta name="description" content="משימת תצפית בציפורים בפארק גני יהושע. מצאו ציפורים, השלימו את האתגר וצברו נקודות במשחק המשפחתי.">
     
     <!-- פונט Google Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +21,7 @@
             --accent-hover: #f57c00;
             --bg-grad-1: #e8f5e9;
             --bg-grad-2: #f1f8e9;
-            --text-main: #1a237e;
+            --text-main: #1b5e20;
             --text-muted: #455a64;
             --card-bg: rgba(255, 255, 255, 0.95);
             --shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -70,13 +72,10 @@
             border-bottom: 1px solid rgba(0,0,0,0.06);
         }
 
-        .station-badge {
-            background: var(--bg-grad-1);
-            color: var(--primary-dark);
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.85rem;
+        .logo-badge {
+            font-size: 0.9rem;
             font-weight: 700;
+            color: var(--primary-dark);
             display: flex;
             align-items: center;
             gap: 6px;
@@ -86,15 +85,49 @@
             font-size: 0.9rem;
             font-weight: 700;
             color: var(--accent-hover);
+            background: rgba(255, 152, 0, 0.1);
+            padding: 6px 12px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             gap: 4px;
         }
 
+        /* Progress Bar Section */
+        .progress-wrap {
+            padding: 12px 20px 0 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-bg {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            height: 100%;
+            width: 14.28%; /* תחנה 1 מתוך 7 */
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* Hero Image Container */
         .hero-image-wrapper {
             position: relative;
             width: 100%;
-            height: 220px;
+            height: 200px;
+            margin-top: 12px;
             overflow: hidden;
         }
 
@@ -104,12 +137,22 @@
             object-fit: cover;
         }
 
+        .hero-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a5d6a7, #66bb6a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
         .hero-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60px;
+            height: 50px;
             background: linear-gradient(to top, var(--card-bg), transparent);
         }
 
@@ -120,95 +163,144 @@
             text-align: right;
         }
 
-        .station-title {
+        .station-header {
             margin-top: 10px;
             margin-bottom: 16px;
+        }
+
+        .station-badge {
+            display: inline-block;
+            background: var(--bg-grad-1);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
         .station-title h1 {
             font-size: 1.6rem;
             font-weight: 800;
             color: var(--primary-dark);
+            line-height: 1.2;
+        }
+
+        .station-title p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Card Elements */
+        .card {
+            background: #ffffff;
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .hint-card {
-            background: #ffffff;
-            border-right: 4px solid var(--accent);
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        .card p {
+            font-size: 0.9rem;
+            color: #37474f;
+            line-height: 1.5;
+            margin-bottom: 10px;
         }
 
-        .hint-title {
+        /* Hint Card */
+        .hint-box {
+            background: #fff8e1;
+            border-right: 4px solid #ffb300;
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 10px;
+        }
+
+        .hint-header {
             font-size: 0.95rem;
             font-weight: 700;
-            color: var(--accent-hover);
-            margin-bottom: 4px;
+            color: #f57f17;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .hint-text {
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .hint-info {
+            font-size: 0.85rem;
+            color: #5d4037;
             line-height: 1.4;
         }
 
-        .task-card {
-            background: #ffffff;
-            border: 1px solid rgba(46, 125, 50, 0.2);
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        .task-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .task-icon {
-            font-size: 1.5rem;
-            background: var(--bg-grad-1);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .task-title {
-            font-size: 1.1rem;
+        .btn-toggle-hint {
+            margin-top: 10px;
+            background: #ffe082;
+            color: #4e342e;
+            border: none;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: var(--primary-dark);
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .instruction-box {
+        .btn-toggle-hint:hover {
+            background: #ffd54f;
+        }
+
+        #hintExtra {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ffe082;
+            font-size: 0.85rem;
+            color: #4e342e;
+            line-height: 1.5;
+        }
+
+        /* Timer Box */
+        .timer-box {
             background: var(--bg-grad-1);
-            border-radius: 12px;
-            padding: 10px 14px;
-            font-size: 0.88rem;
-            color: var(--primary-dark);
-            font-weight: 500;
-            margin-bottom: 16px;
+            border-radius: 16px;
+            padding: 16px;
             text-align: center;
+            margin-top: 10px;
         }
 
-        /* Checkbox list styled options */
+        .timer-display {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            direction: ltr;
+            margin: 6px 0;
+            font-family: monospace;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        /* Options Group */
         .options-group {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-bottom: 16px;
+            margin-top: 12px;
         }
 
         .option-item {
@@ -218,7 +310,7 @@
             background: #f8f9fa;
             border: 2px solid #e0e0e0;
             border-radius: 14px;
-            padding: 12px 16px;
+            padding: 12px 14px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -233,296 +325,514 @@
             align-items: center;
             gap: 10px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #37474f;
         }
 
+        .option-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
         .option-points {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--accent-hover);
             background: rgba(255, 152, 0, 0.12);
             padding: 4px 10px;
             border-radius: 20px;
+            white-space: nowrap;
         }
 
-        .radio-custom {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid #b0bec5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .option-item.selected .radio-custom {
-            border-color: var(--primary);
-            background: var(--primary);
-        }
-
-        .option-item.selected .radio-custom::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: #ffffff;
-            border-radius: 50%;
-        }
-
-        /* Bonus Box */
-        .bonus-card {
-            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
-            border-radius: 16px;
-            padding: 14px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .bonus-icon {
-            font-size: 1.5rem;
-        }
-
-        .bonus-text {
-            font-size: 0.85rem;
-            color: #5d4037;
-            line-height: 1.4;
-        }
-
-        .bonus-text strong {
-            color: #e65100;
+        /* Photo Upload UI */
+        .photo-uploader {
             display: block;
-            margin-bottom: 2px;
+            background: #f4faf5;
+            border: 2px dashed #a9d4b6;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            margin-top: 10px;
         }
 
-        /* Action Buttons */
+        .photo-uploader input {
+            display: none;
+        }
+
+        #photoPreview {
+            display: none;
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-top: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .photo-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Buttons */
         .btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             border: none;
-            border-radius: 16px;
-            font-size: 1.1rem;
+            border-radius: 14px;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             text-decoration: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
             color: #ffffff;
-            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.35);
+            box-shadow: 0 6px 18px rgba(255, 152, 0, 0.3);
         }
 
-        .btn-primary:disabled {
-            background: #ccc;
-            box-shadow: none;
-            cursor: not-allowed;
+        .btn-green {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(46, 125, 50, 0.25);
         }
 
-        .btn-primary:not(:disabled):active {
-            transform: scale(0.98);
+        .btn-secondary {
+            background: #e8f5e9;
+            color: var(--primary-dark);
         }
 
-        .footer-nav {
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .back-link {
+        .btn-light {
+            background: #ffffff;
             color: var(--text-muted);
+            border: 1px solid #cfd8dc;
+            margin-top: 8px;
+        }
+
+        /* Success Message */
+        .status-alert {
+            display: none;
+            background: #d8f3dc;
+            color: #075b43;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            font-weight: 700;
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- בר התקדמות עליון -->
+        
+        <!-- סרגל עליון -->
         <div class="progress-header">
-            <div class="station-badge">
-                <span>🐦</span>
-                <span>תחנה 1 מתוך 7</span>
+            <div class="logo-badge">
+                <span>🌳</span>
+                <span>אתגר גני יהושע</span>
             </div>
             <div class="score-counter">
-                <span>⭐ ניקוד מצטבר:</span>
-                <span id="currentScoreDisplay">0</span>
+                <span>⭐ ניקוד:</span>
+                <span id="totalScoreDisplay">0</span>
+                <span>/ 70</span>
             </div>
         </div>
 
-        <!-- תמונת התחנה -->
+        <!-- בר התקדמות -->
+        <div class="progress-wrap">
+            <div class="progress-label">
+                <span>התקדמות במסלול</span>
+                <strong>14% (תחנה 1/7)</strong>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <!-- תמונת נושא / תצוגת מקום -->
         <div class="hero-image-wrapper">
-            <img src="https://tinokotnet.files.wordpress.com/2016/03/girl-812482_640.jpg" alt="מתחם הצפרות" class="hero-image">
+            <img id="mainHeroImage" src="https://tinokotnet.files.wordpress.com/2016/03/girl-812482_640.jpg" alt="מתחם הצפרות" class="hero-image" onerror="this.style.display='none'; document.getElementById('heroPlaceholder').style.display='flex';">
+            <div id="heroPlaceholder" class="hero-placeholder" style="display: none;">🐦🌳</div>
             <div class="hero-overlay"></div>
         </div>
 
-        <!-- גוף התוכן -->
         <div class="content-body">
             
-            <div class="station-title">
-                <h1>🐦 תחנה 1 – מתחם הצפרות</h1>
-            </div>
-
-            <!-- כרטיס רמז למיקום -->
-            <div class="hint-card">
-                <div class="hint-title">
-                    <span>🔎</span>
-                    <span>רמז למציאת המקום</span>
-                </div>
-                <div class="hint-text">
-                    חפשו מקום שקט ומקורה ליד הירקון, שבו אפשר לעצור, להתבונן ולחפש ציפורים בסביבה.
+            <!-- כותרת תחנה -->
+            <div class="station-header">
+                <span class="station-badge">תחנה 1 מתוך 7</span>
+                <div class="station-title">
+                    <h1>🐦 חוקרי הציפורים</h1>
+                    <p>עיניים חדות, אוזניים פתוחות והרבה סבלנות!</p>
                 </div>
             </div>
 
-            <!-- משימת התחנה -->
-            <div class="task-card">
-                <div class="task-header">
-                    <div class="task-icon">🎯</div>
-                    <div class="task-title">המשימה בשטח</div>
-                </div>
-
-                <div class="instruction-box">
-                    ⏱️ עמדו בשקט במשך 30 שניות והסתכלו סביבכם!
-                </div>
-
-                <p style="font-size: 0.9rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 12px;">
-                    כמה סוגי ציפורים הצלחתם למצוא?
+            <!-- כרטיס 1: הוראות הגעה ורמז -->
+            <div class="card">
+                <h2>🔎 המשימה שלכם</h2>
+                <p>
+                    ברוכים הבאים לתחנה הראשונה! הגיע הזמן להפוך לחוקרי טבע אמיתיים. 
+                    המשימה שלכם היא למצוא את אזור התצפית בציפורים בפארק, לעצור לרגע ולהתבונן בטבע שסביבכם.
                 </p>
 
-                <!-- אפשרויות בחירה לקבלת ניקוד -->
-                <div class="options-group" id="optionsGroup">
-                    <div class="option-item" data-points="3" onclick="selectOption(this, 3)">
+                <div class="hint-box">
+                    <div class="hint-header">
+                        <span>🗺️</span>
+                        <span>רמז והוראות הגעה לתחנה</span>
+                    </div>
+                    <div class="hint-info">
+                        <strong>📍 הגעה ברכב:</strong> מרחוב רוקח ברמת גן, מול בית 74 (ליד החווה החקלאית), פנו מערבה בדרך הסלולה להגעה לרחבת החניה. שער הכניסה נמצא מולכם.
+                        <br>
+                        <strong>🕒 שעות פתיחה:</strong> א'-ש' 07:00 עד 17:00 | <strong>כניסה חינם!</strong>
+                    </div>
+
+                    <button class="btn-toggle-hint" onclick="toggleHint()" id="hintBtn">
+                        🔓 גלו רמז נוסף
+                    </button>
+
+                    <div id="hintExtra">
+                        חפשו מקום שקט ומקורה ליד הירקון המאפשר לעמוד בשקט, להסתכל על העצים ולהקשיב לציוצי הציפורים. היעזרו בשילוט המקומי ובמפת הפארק!
+                    </div>
+                </div>
+            </div>
+
+            <!-- כרטיס 2: טיימר 30 שניות -->
+            <div class="card">
+                <h2>⏱️ אתגר 30 השניות</h2>
+                <p>
+                    מצאתם את המקום? עכשיו הגיע הזמן לתצפית!
+                    עמדו יחד בשקט במשך 30 שניות. בלי לרוץ ובלי להרעיש כדי לא להפחיד את הציפורים.
+                </p>
+
+                <div class="timer-box">
+                    <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">מוכנים לתצפית?</div>
+                    <div class="timer-display" id="timerDisplay">00:30</div>
+                    
+                    <div class="timer-controls">
+                        <button class="btn btn-green" id="timerStartBtn" onclick="startTimer()">
+                            ▶️ התחל תצפית
+                        </button>
+                        <button class="btn btn-secondary" style="width: auto;" onclick="resetTimer()">
+                            🔄
+                        </button>
+                    </div>
+
+                    <div class="status-alert" id="timerSuccess">
+                        🎉 כל הכבוד! השלמתם 30 שניות של תצפית שקטה!
+                    </div>
+                </div>
+            </div>
+
+            <!-- כרטיס 3: בחירת ניקוד -->
+            <div class="card">
+                <h2>🏆 כמה ציפורים הצלחתם למצוא?</h2>
+                <p>לאחר התצפית, סמנו את מספר סוגי הציפורים שזיהיתם בפועל:</p>
+
+                <div class="options-group">
+                    <label class="option-item" onclick="selectOption(this, 0)">
                         <div class="option-label">
-                            <div class="radio-custom"></div>
-                            <span>ציפור אחת 🐦</span>
+                            <input type="radio" name="birds" value="0">
+                            <span>לא הצלחנו לזהות ציפור 🦜</span>
+                        </div>
+                        <div class="option-points">0 נקודות</div>
+                    </label>
+
+                    <label class="option-item" onclick="selectOption(this, 3)">
+                        <div class="option-label">
+                            <input type="radio" name="birds" value="3">
+                            <span>זיהינו ציפור אחת 🐦</span>
                         </div>
                         <div class="option-points">+3 נקודות</div>
-                    </div>
+                    </label>
 
-                    <div class="option-item" data-points="6" onclick="selectOption(this, 6)">
+                    <label class="option-item" onclick="selectOption(this, 6)">
                         <div class="option-label">
-                            <div class="radio-custom"></div>
-                            <span>שתי ציפורים 🐦🐦</span>
+                            <input type="radio" name="birds" value="6">
+                            <span>זיהינו שתי ציפורים 🐦🐦</span>
                         </div>
                         <div class="option-points">+6 נקודות</div>
-                    </div>
+                    </label>
 
-                    <div class="option-item" data-points="10" onclick="selectOption(this, 10)">
+                    <label class="option-item" onclick="selectOption(this, 10)">
                         <div class="option-label">
-                            <div class="radio-custom"></div>
-                            <span>שלוש ציפורים שונות! 🐦🕊️🦜</span>
+                            <input type="radio" name="birds" value="10">
+                            <span>שלוש ציפורים שונות או יותר! 🐦🕊️🦜</span>
                         </div>
                         <div class="option-points">+10 נקודות</div>
-                    </div>
+                    </label>
+                </div>
+
+                <div style="background:#fff8e1; padding:10px 14px; border-radius:12px; margin-top:14px; font-size:0.8rem; color:#5d4037;">
+                    💡 <strong>טיפ לחוקרים:</strong> חפשו הבדלים בצבעים, בגודל ובציוץ. אין צורך להתקרב או לגעת בציפורים.
                 </div>
             </div>
 
-            <!-- אתגר בונוס -->
-            <div class="bonus-card">
-                <div class="bonus-icon">📸</div>
-                <div class="bonus-text">
-                    <strong>אתגר בונוס משפחתי!</strong>
-                    צלמו את הציפור הכי מעניינת או המיוחדת שראיתם בתחנה למזכרת!
+            <!-- כרטיס 4: צילום תמונה -->
+            <div class="card">
+                <h2>📸 תמונת הוכחה משפחתית</h2>
+                <p>רוצים מזכרת? צלמו תמונה משפחתית באזור התצפית (רשות):</p>
+
+                <label class="photo-uploader">
+                    📷 צלמו תמונה או בחרו מהגלריה
+                    <input type="file" id="photoInput" accept="image/*" capture="environment">
+                </label>
+
+                <img id="photoPreview" alt="תצוגה מקדימה של התמונה">
+
+                <div class="photo-note">
+                    🔒 התמונה נשארת במכשירכם בלבד ואינה נשלחת לשרת.
                 </div>
             </div>
 
-            <!-- כפתור מעבר לתחנה הבאה -->
-            <button id="btnNext" class="btn btn-primary" disabled onclick="saveAndContinue()">
-                <span>לתחנה הבאה (הכדור הפורח)</span>
-                <span>⬅️</span>
-            </button>
+            <!-- כרטיס 5: סיום ושמירה -->
+            <div class="card">
+                <h2>✅ סיימתם את התחנה?</h2>
+                <p>בדקו שבחרתם את הניקוד שלכם, שמרו והמשיכו לתחנה הבאה.</p>
 
-            <div class="footer-nav">
+                <button class="btn btn-primary" onclick="completeMission()">
+                    <span>שמרו ניקוד והמשיכו לתחנה 2</span>
+                    <span>⬅️</span>
+                </button>
+
+                <button class="btn btn-light" onclick="window.location.href='index.html'">
+                    🔙 חזרה למסך הראשי
+                </button>
+
+                <div class="status-alert" id="completeSuccess">
+                    🎉 התוצאה נשמרה בהצלחה! מעביר לתחנה הבאה...
+                </div>
+            </div>
+
+            <div class="footer">
+                אתגר גני יהושע · משחק משפחתי בטבע
                 <br>
-                <a href="index.html" class="back-link">🔙 חזרה לדף הראשי</a>
+                <a href="index.html">חזרה למסך הראשי</a>
             </div>
 
         </div>
     </div>
 
-    <!-- לוגיקת JavaScript לשמירה ומעבר -->
+    <!-- הלוגיקה המשחקים והסנכרון -->
     <script>
-        let selectedPoints = 0;
-        let gameData = {};
+        let selectedPoints = null;
+        let timeLeft = 30;
+        let timerInterval = null;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // טעינת נתוני המשחק מ-localStorage
-            const savedGame = localStorage.getItem('parkChallenge_game');
-            
-            if (savedGame) {
-                try {
-                    gameData = JSON.parse(savedGame);
-                } catch(e) {
-                    console.error("שגיאה בטעינת נתונים", e);
-                }
+        // טעינה וסנכרון של נתוני המשחק מ-LocalStorage
+        function getGameData() {
+            try {
+                // תמיכה בשני מפתחות localStorage (גם parkChallenge_game וגם parkGame) לסנכרון מלא
+                const primaryData = JSON.parse(localStorage.getItem("parkChallenge_game") || "{}");
+                const fallbackData = JSON.parse(localStorage.getItem("parkGame") || "{}");
+                return { ...fallbackData, ...primaryData };
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveGameData(data) {
+            const dataStr = JSON.stringify(data);
+            localStorage.setItem("parkChallenge_game", dataStr);
+            localStorage.setItem("parkGame", dataStr);
+        }
+
+        function updateTotalScoreDisplay() {
+            const data = getGameData();
+            let total = data.totalScore || 0;
+
+            // חישוב גיבוי אם קיימים scores
+            if (!total && data.scores) {
+                total = Object.values(data.scores).reduce((a, b) => Number(a) + Number(b), 0);
             }
 
-            // עדכון מציג הניקוד בראש הדף
-            const currentTotal = gameData.totalScore || 0;
-            document.getElementById('currentScoreDisplay').textContent = currentTotal;
+            document.getElementById("totalScoreDisplay").textContent = total;
+        }
 
-            // אם כבר ענו על התחנה הזו בעבר - טען את הבחירה
-            if (gameData.stations && gameData.stations['bird']) {
-                const prevPoints = gameData.stations['bird'].points;
-                const items = document.querySelectorAll('.option-item');
-                items.forEach(item => {
-                    if (parseInt(item.getAttribute('data-points')) === prevPoints) {
-                        selectOption(item, prevPoints);
-                    }
-                });
+        document.addEventListener("DOMContentLoaded", () => {
+            updateTotalScoreDisplay();
+
+            // שחזור תשובה שנבחרה בעבר
+            const data = getGameData();
+            let savedScore = null;
+
+            if (data.stations && data.stations['bird']) {
+                savedScore = data.stations['bird'].points;
+            } else if (data.scores && data.scores.bird !== undefined) {
+                savedScore = data.scores.bird;
+            }
+
+            if (savedScore !== null) {
+                const radio = document.querySelector(`input[name="birds"][value="${savedScore}"]`);
+                if (radio) {
+                    radio.checked = true;
+                    selectOption(radio.closest('.option-item'), Number(savedScore));
+                }
             }
         });
 
-        // פונקציית בחירת תשובה
-        function selectOption(element, points) {
-            // הסרת סימון מכל האפשרויות
-            document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
-            
-            // סימון האפשרות הנבחרת
-            element.classList.add('selected');
-            selectedPoints = points;
+        /* --- רמז מתקפל --- */
+        function toggleHint() {
+            const extra = document.getElementById("hintExtra");
+            const btn = document.getElementById("hintBtn");
 
-            // הפעלת כפתור המעבר
-            document.getElementById('btnNext').disabled = false;
+            if (extra.style.display === "block") {
+                extra.style.display = "none";
+                btn.textContent = "🔓 גלו רמז נוסף";
+            } else {
+                extra.style.display = "block";
+                btn.textContent = "🔒 הסתירו את הרמז";
+            }
         }
 
-        // פונקציית שמירת הנתונים ומעבר לדף הבא
-        function saveAndContinue() {
-            if (selectedPoints === 0) return;
+        /* --- טיימר 30 שניות --- */
+        function renderTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById("timerDisplay").textContent =
+                String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+        }
 
-            // עדכון נתוני הניקוד והתחנה הנוכחית
-            if (!gameData.stations) gameData.stations = {};
+        function startTimer() {
+            if (timerInterval !== null) return;
+
+            const btn = document.getElementById("timerStartBtn");
+            btn.textContent = "⏱️ התצפית בעיצומה...";
+            btn.disabled = true;
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                renderTimer();
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    btn.textContent = "✓ התצפית הושלמה!";
+                    document.getElementById("timerSuccess").style.display = "block";
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            if (timerInterval !== null) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timeLeft = 30;
+            renderTimer();
+
+            const btn = document.getElementById("timerStartBtn");
+            btn.textContent = "▶️ התחל תצפית";
+            btn.disabled = false;
+            document.getElementById("timerSuccess").style.display = "none";
+        }
+
+        /* --- בחירת תשובה --- */
+        function selectOption(element, points) {
+            document.querySelectorAll(".option-item").forEach(el => el.classList.remove("selected"));
+            element.classList.add("selected");
             
-            // שמירת הניקוד הקודם של תחנה זו אם קיים (כדי למנוע כפילות חישוב)
-            const previousStationPoints = gameData.stations['bird'] ? gameData.stations['bird'].points : 0;
+            const radio = element.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+
+            selectedPoints = points;
+        }
+
+        /* --- העלאת תמונה מקומית --- */
+        document.getElementById("photoInput").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith("image/")) {
+                alert("נא לבחור קובץ תמונה בלבד.");
+                return;
+            }
+
+            const preview = document.getElementById("photoPreview");
+            const mainHero = document.getElementById("mainHeroImage");
+
+            const imgUrl = URL.createObjectURL(file);
+            preview.src = imgUrl;
+            preview.style.display = "block";
+
+            // עדכון תמונת ה-Hero לתמונה שצולמה
+            if (mainHero) {
+                mainHero.src = imgUrl;
+            }
+        });
+
+        /* --- שמירה ומעבר לתחנה הבאה --- */
+        function completeMission() {
+            if (selectedPoints === null) {
+                alert("אנא בחרו את מספר הציפורים שזיהיתם כדי לשמור את הניקוד.");
+                return;
+            }
+
+            const data = getGameData();
+
+            // עדכון נתונים במבנה 1
+            if (!data.stations) data.stations = {};
+            const prevPoints = data.stations['bird'] ? data.stations['bird'].points : 0;
             
-            gameData.stations['bird'] = {
+            data.stations['bird'] = {
                 completed: true,
                 points: selectedPoints,
                 completedAt: new Date().toISOString()
             };
 
-            // חישוב ניקוד כולל מעודכן
-            gameData.totalScore = (gameData.totalScore || 0) - previousStationPoints + selectedPoints;
+            // עדכון נתונים במבנה 2 (תאימות מלאה)
+            if (!data.scores) data.scores = {};
+            data.scores.bird = selectedPoints;
             
-            // הגדרת התחנה הבאה במסלול
-            gameData.currentStation = 'balloon.html';
-            gameData.updatedAt = new Date().toISOString();
+            if (!data.completed) data.completed = {};
+            data.completed.bird = true;
 
-            // שמירה בחזרה ל-localStorage
-            localStorage.setItem('parkChallenge_game', JSON.stringify(gameData));
+            // חישוב סך הניקוד
+            data.totalScore = (data.totalScore || 0) - prevPoints + selectedPoints;
+            data.currentStation = 'balloon.html'; // התחנה הבאה במסלול
+            data.updatedAt = new Date().toISOString();
 
-            // מעבר לדף התחנה הבאה (balloon.html)
-            const gameId = gameData.gameId || '';
-            window.location.href = `balloon.html?game=${gameId}`;
+            saveGameData(data);
+            updateTotalScoreDisplay();
+
+            document.getElementById("completeSuccess").style.display = "block";
+
+            setTimeout(() => {
+                window.location.href = "balloon.html";
+            }, 1200);
         }
     </script>
 </body>

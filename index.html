@@ -21,7 +21,7 @@
             --bg-grad-2: #f1f8e9;
             --text-main: #1a237e;
             --text-muted: #455a64;
-            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-bg: rgba(255, 255, 255, 0.95);
             --shadow: 0 10px 30px rgba(0,0,0,0.08);
             --radius: 24px;
         }
@@ -39,7 +39,7 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 16px;
             color: #263238;
         }
@@ -57,6 +57,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            margin-bottom: 20px;
         }
 
         .hero-image-wrapper {
@@ -154,36 +155,12 @@
             color: var(--text-muted);
         }
 
-        .info-box {
-            background: rgba(232, 245, 233, 0.6);
-            border-right: 4px solid var(--primary);
-            border-radius: 12px;
-            padding: 14px 16px;
-            width: 100%;
-            text-align: right;
-            margin-bottom: 24px;
-        }
-
-        .info-box h3 {
-            font-size: 0.95rem;
-            color: var(--primary-dark);
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .info-box p {
-            font-size: 0.88rem;
-            color: #37474f;
-            line-height: 1.4;
-        }
-
         .action-area {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-bottom: 24px;
         }
 
         .btn {
@@ -224,20 +201,168 @@
             background: var(--bg-grad-1);
         }
 
-        .footer-note {
-            margin-top: 16px;
-            font-size: 0.78rem;
-            color: #78909c;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* מנגנון חלון המשך משחק קיים */
         .resume-banner {
             display: none;
             width: 100%;
+        }
+
+        /* עיצוב סקציות ותוכן מורחב */
+        .section {
+            width: 100%;
+            margin-top: 24px;
+            text-align: right;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .intro-card {
+            background: rgba(232, 245, 233, 0.6);
+            border-right: 4px solid var(--primary);
+            border-radius: 16px;
+            padding: 16px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .intro-card p {
+            margin-bottom: 8px;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* שלבי המשחק */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .step {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 16px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .step-number {
+            font-size: 1.6rem;
+            background: var(--bg-grad-1);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            color: #37474f;
+            line-height: 1.4;
+        }
+
+        .step-text strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 0.98rem;
+            margin-bottom: 2px;
+        }
+
+        /* גריד משימות ומה תגלו */
+        .missions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .mission {
+            background: #ffffff;
+            border: 1px solid rgba(46, 125, 50, 0.12);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+        }
+
+        .mission-icon {
+            font-size: 1.8rem;
+        }
+
+        .mission-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .mission-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* בטיחות */
+        .safety {
+            background: #fff3e0;
+            border-right: 4px solid var(--accent);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 24px;
+            text-align: right;
+            width: 100%;
+        }
+
+        .safety h3 {
+            font-size: 1rem;
+            color: #e65100;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .safety p {
+            font-size: 0.85rem;
+            color: #4e342e;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .safety p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* פוטר */
+        .footer {
+            margin-top: 28px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            font-size: 0.82rem;
+            color: #78909c;
+            line-height: 1.5;
+            width: 100%;
+        }
+
+        .footer strong {
+            color: var(--primary-dark);
         }
     </style>
 </head>
@@ -266,7 +391,7 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <span class="stat-icon">🚩</span>
-                    <span class="stat-value">7 משימות</span>
+                    <span class="stat-value">7 תחנות</span>
                     <span class="stat-label">משימות בשטח</span>
                 </div>
                 <div class="stat-card">
@@ -281,13 +406,7 @@
                 </div>
             </div>
 
-            <!-- הנחיות קצרות -->
-            <div class="info-box">
-                <h3>💡 מה מצפה לכם?</h3>
-                <p>מצאו מקומות סודיים בפארק לפי הרמזים והתמונות, פתרו משימות, צלמו תמונות משפחתיות וצברו נקודות בדרך לתעודת החוקר!</p>
-            </div>
-
-            <!-- אזור כפתורי הפעלה -->
+            <!-- אזור כפתורי הפעלה עליון -->
             <div class="action-area">
                 
                 <!-- כפתור המשך משחק קיים (יופיע אוטומטית אם יש שמירה) -->
@@ -298,18 +417,156 @@
                     </button>
                 </div>
 
-                <!-- כפתור התחלה חדשה -->
-                <button id="btnStart" class="btn btn-primary">
+                <!-- כפתור התחלה ראשון -->
+                <button id="btnStart" class="btn btn-primary btn-start-trigger">
                     <span>🚀</span>
                     <span>התחל את המחקר בפארק!</span>
                 </button>
 
             </div>
 
-            <div class="footer-note">
-                <span>📱</span>
-                <span>ציוד מומלץ: טלפון טעון, מצלמה, נעליים נוחות ומבוגר מלווה</span>
-            </div>
+            <main>
+                <!-- מה מחכה לכם -->
+                <section class="section">
+                    <h2 class="section-title">
+                        🗺️ מה מחכה לכם במשחק?
+                    </h2>
+
+                    <div class="intro-card">
+                        <p>
+                            היום אתם לא סתם מטיילים בפארק.
+                            אתם הופכים ל<strong>חוקרי גני יהושע!</strong>
+                        </p>
+                        <p>
+                            ברחבי הפארק מחכות לכם 7 תחנות מיוחדות.
+                            בכל תחנה תצטרכו למצוא מקום לפי תמונה ורמז,
+                            לבצע משימה ולצבור נקודות.
+                        </p>
+                        <p>
+                            חפשו ציפורים, גלו אגם נסתר, הקשיבו לסיפורים
+                            ובחנו את חמשת החושים שלכם.
+                            בסיום המשחק תוכלו לקבל
+                            <strong>תעודת חוקר אישית!</strong>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- איך משחקים -->
+                <section class="section">
+                    <h2 class="section-title">
+                        🎯 איך משחקים?
+                    </h2>
+
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">📸</div>
+                            <div class="step-text">
+                                <strong>1. מצאו את התחנה</strong>
+                                הסתכלו בתמונה וקראו את הרמז. נסו לגלות היכן המקום נמצא.
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">🔍</div>
+                            <div class="step-text">
+                                <strong>2. השלימו את המשימה</strong>
+                                חפשו, ספרו, הקשיבו וגלו דברים חדשים.
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">⭐</div>
+                            <div class="step-text">
+                                <strong>3. צברו נקודות</strong>
+                                סמנו את מה שהצלחתם לעשות וראו כמה נקודות קיבלתם.
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">🏆</div>
+                            <div class="step-text">
+                                <strong>4. השלימו את האתגר</strong>
+                                עברו את כל שבע התחנות, הגיעו לסיום וקבלו תעודת חוקר!
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- מה תגלו בדרך -->
+                <section class="section">
+                    <h2 class="section-title">
+                        🌟 מה תגלו בדרך?
+                    </h2>
+
+                    <div class="missions">
+                        <div class="mission">
+                            <div class="mission-icon">🐦</div>
+                            <div class="mission-title">מתחם הצפרות</div>
+                            <div class="mission-desc">גלו ציפורים והפכו לצפרים צעירים.</div>
+                        </div>
+
+                        <div class="mission">
+                            <div class="mission-icon">🏛️</div>
+                            <div class="mission-title">סיפור הנחל</div>
+                            <div class="mission-desc">מצאו מבנה עתיק והקשיבו לסיפורו.</div>
+                        </div>
+
+                        <div class="mission">
+                            <div class="mission-icon">🎈</div>
+                            <div class="mission-title">הכדור הפורח</div>
+                            <div class="mission-desc">חפשו צבעים וגלו מה מסתתר סביבכם.</div>
+                        </div>
+
+                        <div class="mission">
+                            <div class="mission-icon">👀</div>
+                            <div class="mission-title">חמשת החושים</div>
+                            <div class="mission-desc">הפעילו את כל החושים במשימה מיוחדת.</div>
+                        </div>
+
+                        <div class="mission">
+                            <div class="mission-icon">🌴</div>
+                            <div class="mission-title">הגן הטרופי</div>
+                            <div class="mission-desc">גלו שביל יפה ואגם נסתר.</div>
+                        </div>
+
+                        <div class="mission">
+                            <div class="mission-icon">🏆</div>
+                            <div class="mission-title">אתגר הסיום</div>
+                            <div class="mission-desc">שתפו פעולה וזכו בתואר חוקרי הפארק.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- בטיחות -->
+                <section class="safety">
+                    <h3>💚 כמה דברים לפני שיוצאים לדרך</h3>
+                    <p>
+                        המשחק מיועד למשפחות וילדים בליווי מבוגר.
+                        שימו לב לסביבה, חצו שבילים בזהירות והישארו יחד לאורך המסלול.
+                    </p>
+
+                    <p>
+                        אין להיכנס למים, לטפס על מתקנים או להפריע לבעלי החיים.
+                        צלמו רק במקומות בטוחים ובהשגחת מבוגר.
+                    </p>
+                </section>
+
+                <!-- כפתור התחלה תחתון -->
+                <section class="section" style="margin-top: 32px;">
+                    <button id="bottomStart" class="btn btn-primary btn-start-trigger">
+                        <span>🚀</span>
+                        <span>יוצאים להרפתקה!</span>
+                    </button>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <strong>אתגר גני יהושע</strong>
+                <br>
+                שבע תחנות. שבע משימות. זיכרונות לכל החיים.
+                <br>
+                משחק משפחתי בפארק
+            </footer>
 
         </div>
     </div>
@@ -317,7 +574,7 @@
     <!-- לוגיקת JavaScript לפתיחת/המשך המשחק -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const btnStart = document.getElementById('btnStart');
+            const startButtons = document.querySelectorAll('.btn-start-trigger');
             const btnResume = document.getElementById('btnResume');
             const resumeContainer = document.getElementById('resumeContainer');
 
@@ -337,8 +594,8 @@
                 }
             }
 
-            // יצירת משחק חדש
-            btnStart.addEventListener('click', () => {
+            // פונקציית התחלת משחק חדש
+            function startNewGame() {
                 const newGameId = 'game_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
                 
                 const newGameData = {
@@ -357,6 +614,11 @@
 
                 // מעבר לתחנה הראשונה
                 window.location.href = `bird.html?game=${newGameId}`;
+            }
+
+            // הצמדת אירוע לכל כפתורי ההתחלה בעמוד
+            startButtons.forEach(btn => {
+                btn.addEventListener('click', startNewGame);
             });
 
             // המשך משחק קיים

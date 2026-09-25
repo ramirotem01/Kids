@@ -1,561 +1,375 @@
-<div id="familyTripBox" dir="rtl">
-<style>
-#familyTripBox {
-    font-family: Arial, sans-serif;
-    max-width: 900px;
-    margin: 0 auto;
-    color: #17324d;
-}
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>אתגר גני יהושע - הרפתקה משפחתית</title>
+    
+    <!-- פונט Google Rubik למראה מודרני ונקי -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --accent: #ff9800;
+            --accent-hover: #f57c00;
+            --bg-grad-1: #e8f5e9;
+            --bg-grad-2: #f1f8e9;
+            --text-main: #1a237e;
+            --text-muted: #455a64;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 24px;
+        }
 
-#familyTripBox * {
-    box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-.ftb-hero {
-    background: linear-gradient(135deg, #e8f6ff, #f7fbff);
-    border: 1px solid #d7eaf5;
-    border-radius: 24px;
-    padding: 35px 25px;
-    text-align: center;
-    margin-bottom: 25px;
-}
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            color: #263238;
+        }
 
-.ftb-hero h1 {
-    margin: 0 0 12px;
-    font-size: 34px;
-    color: #1769aa;
-}
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
 
-.ftb-hero p {
-    margin: 0;
-    font-size: 18px;
-    line-height: 1.7;
-}
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
 
-.ftb-free {
-    display: inline-block;
-    margin-top: 18px;
-    background: #ffffff;
-    border: 1px solid #cfe4f2;
-    border-radius: 30px;
-    padding: 8px 18px;
-    font-weight: bold;
-    color: #1769aa;
-}
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-.ftb-card {
-    background: #fff;
-    border: 1px solid #e1e8ee;
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 20px;
-}
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+        }
 
-.ftb-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 18px;
-}
+        .badge-tag {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-.ftb-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-}
+        .content-body {
+            padding: 0 24px 28px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-.ftb-option {
-    border: 2px solid #dce6ed;
-    background: #fff;
-    border-radius: 14px;
-    padding: 16px 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: all .2s ease;
-    font-size: 16px;
-    font-weight: bold;
-    color: #24465f;
-}
+        .title-group h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
 
-.ftb-option:hover {
-    border-color: #4ca3d9;
-    transform: translateY(-2px);
-}
+        .title-group p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
 
-.ftb-option.selected {
-    border-color: #1769aa;
-    background: #eaf6ff;
-    color: #1769aa;
-}
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin: 20px 0;
+        }
 
-.ftb-option span {
-    display: block;
-    font-size: 27px;
-    margin-bottom: 7px;
-}
+        .stat-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            border-radius: 16px;
+            padding: 12px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
 
-.ftb-button {
-    width: 100%;
-    border: 0;
-    border-radius: 14px;
-    background: #1769aa;
-    color: white;
-    padding: 17px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-}
+        .stat-icon {
+            font-size: 1.4rem;
+        }
 
-.ftb-button:hover {
-    background: #125789;
-}
+        .stat-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
 
-.ftb-button:disabled {
-    background: #b8c5ce;
-    cursor: not-allowed;
-}
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
 
-.ftb-message {
-    text-align: center;
-    color: #b04b3b;
-    margin-top: 12px;
-    font-weight: bold;
-}
+        .info-box {
+            background: rgba(232, 245, 233, 0.6);
+            border-right: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 14px 16px;
+            width: 100%;
+            text-align: right;
+            margin-bottom: 24px;
+        }
 
-.ftb-game {
-    display: none;
-    background: #f8fbfd;
-    border: 2px solid #d8eaf5;
-    border-radius: 20px;
-    padding: 25px;
-    margin-top: 25px;
-}
+        .info-box h3 {
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-.ftb-game.visible {
-    display: block;
-}
+        .info-box p {
+            font-size: 0.88rem;
+            color: #37474f;
+            line-height: 1.4;
+        }
 
-.ftb-game-label {
-    display: inline-block;
-    background: #e4f3fc;
-    color: #1769aa;
-    border-radius: 20px;
-    padding: 7px 13px;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 12px;
-}
+        .action-area {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-.ftb-game h2 {
-    font-size: 27px;
-    margin: 5px 0 12px;
-    color: #17324d;
-}
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            text-decoration: none;
+        }
 
-.ftb-game p {
-    font-size: 18px;
-    line-height: 1.8;
-}
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.35);
+        }
 
-.ftb-task {
-    background: #fff;
-    border-radius: 15px;
-    padding: 18px;
-    margin: 15px 0;
-    border: 1px solid #e2e8ed;
-}
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
 
-.ftb-task strong {
-    color: #1769aa;
-}
+        .btn-secondary {
+            background: #ffffff;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary);
+        }
 
-.ftb-tip {
-    background: #fff8df;
-    border-right: 5px solid #e4b83f;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 18px;
-    line-height: 1.7;
-}
+        .btn-secondary:active {
+            transform: scale(0.98);
+            background: var(--bg-grad-1);
+        }
 
-.ftb-another {
-    background: #fff;
-    color: #1769aa;
-    border: 2px solid #1769aa;
-    margin-top: 12px;
-}
+        .footer-note {
+            margin-top: 16px;
+            font-size: 0.78rem;
+            color: #78909c;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
-.ftb-another:hover {
-    background: #eaf6ff;
-}
+        /* מנגנון חלון המשך משחק קיים */
+        .resume-banner {
+            display: none;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
 
-@media (max-width: 650px) {
-    .ftb-options {
-        grid-template-columns: 1fr 1fr;
-    }
+    <div class="app-container">
+        <!-- תמונת הראשי -->
+        <div class="hero-image-wrapper">
+            <img src="https://tinokotnet.files.wordpress.com/2016/03/girl-812482_640.jpg" alt="גני יהושע" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="badge-tag">
+                <span>🌳</span>
+                <span>פארק הירקון</span>
+            </div>
+        </div>
 
-    .ftb-hero h1 {
-        font-size: 28px;
-    }
+        <!-- תוכן ראשי -->
+        <div class="content-body">
+            
+            <div class="title-group">
+                <h1>🕵️ אתגר גני יהושע</h1>
+                <p>הופכים לחוקרי הפארק במשחק משימות משפחתי!</p>
+            </div>
 
-    .ftb-card {
-        padding: 18px;
-    }
-}
-</style>
+            <!-- נתוני מפתח -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">🚩</span>
+                    <span class="stat-value">7 תחנות</span>
+                    <span class="stat-label">משימות בשטח</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🏆</span>
+                    <span class="stat-value">70 נקודות</span>
+                    <span class="stat-label">סך הכל ניקוד</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">⏱️</span>
+                    <span class="stat-value">60-90 דק'</span>
+                    <span class="stat-label">זמן משוער</span>
+                </div>
+            </div>
 
-<div class="ftb-hero">
-    <h1>הקופסה המשפחתית לטיול</h1>
-    <p>
-        משחקים ומשימות שהופכים את הדרך והטיול להרבה יותר כיפיים.
-        בלי מסכים, בלי הכנות מסובכות ובלי ציוד מיוחד.
-    </p>
-    <div class="ftb-free">10 משחקים חינמיים להתחלה</div>
-</div>
+            <!-- הנחיות קצרות -->
+            <div class="info-box">
+                <h3>💡 מה מצפה לכם?</h3>
+                <p>מצאו מקומות סודיים בפארק לפי הרמזים והתמונות, פתרו משימות, צלמו תמונות משפחתיות וצברו נקודות בדרך לתעודת החוקר!</p>
+            </div>
 
-<div class="ftb-card">
-    <div class="ftb-title">מה גיל הילדים?</div>
+            <!-- אזור כפתורי הפעלה -->
+            <div class="action-area">
+                
+                <!-- כפתור המשך משחק קיים (יופיע אוטומטית אם יש שמירה) -->
+                <div id="resumeContainer" class="resume-banner">
+                    <button id="btnResume" class="btn btn-secondary">
+                        <span>🔄</span>
+                        <span>המשך את המשחק שלי</span>
+                    </button>
+                </div>
 
-    <div class="ftb-options" id="ageOptions">
-        <button type="button" class="ftb-option" data-age="3-5">
-            <span>👶</span>
-            3–5
-        </button>
+                <!-- כפתור התחלה חדשה -->
+                <button id="btnStart" class="btn btn-primary">
+                    <span>🚀</span>
+                    <span>התחל את המחקר בפארק!</span>
+                </button>
 
-        <button type="button" class="ftb-option" data-age="6-8">
-            <span>🧒</span>
-            6–8
-        </button>
+            </div>
 
-        <button type="button" class="ftb-option" data-age="9-12">
-            <span>👦</span>
-            9–12
-        </button>
+            <div class="footer-note">
+                <span>📱</span>
+                <span>ציוד מומלץ: טלפון טעון, מצלמה, נעליים נוחות ומבוגר מלווה</span>
+            </div>
+
+        </div>
     </div>
-</div>
 
-<div class="ftb-card">
-    <div class="ftb-title">איזה סוג פעילות?</div>
+    <!-- לוגיקת JavaScript לפתיחת/המשך המשחק -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnStart = document.getElementById('btnStart');
+            const btnResume = document.getElementById('btnResume');
+            const resumeContainer = document.getElementById('resumeContainer');
 
-    <div class="ftb-options" id="typeOptions">
-        <button type="button" class="ftb-option" data-type="car">
-            <span>🚗</span>
-            משחקי רכב
-        </button>
+            // בדיקת היסטוריית משחק ב-localStorage
+            const savedGame = localStorage.getItem('parkChallenge_game');
+            let gameData = null;
 
-        <button type="button" class="ftb-option" data-type="nature">
-            <span>🌳</span>
-            טבע
-        </button>
+            if (savedGame) {
+                try {
+                    gameData = JSON.parse(savedGame);
+                    // אם יש משחק פעיל שטרם הסתיים
+                    if (gameData && gameData.gameId && gameData.status === 'in_progress') {
+                        resumeContainer.style.display = 'block';
+                    }
+                } catch(e) {
+                    console.error("שגיאה בקריאת נתוני המשחק", e);
+                }
+            }
 
-        <button type="button" class="ftb-option" data-type="park">
-            <span>🛝</span>
-            פארק
-        </button>
+            // יצירת משחק חדש
+            btnStart.addEventListener('click', () => {
+                const newGameId = 'game_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                
+                const newGameData = {
+                    gameId: newGameId,
+                    parkId: 'yoshua_park',
+                    currentStation: 'bird.html',
+                    totalScore: 0,
+                    status: 'in_progress',
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                    stations: {}
+                };
 
-        <button type="button" class="ftb-option" data-type="family">
-            <span>👨‍👩‍👧‍👦</span>
-            כל המשפחה
-        </button>
-    </div>
-</div>
+                // שמירה ב-localStorage
+                localStorage.setItem('parkChallenge_game', JSON.stringify(newGameData));
 
-<div class="ftb-card">
-    <button type="button" class="ftb-button" id="findGame">
-        🎲 מצאו לי משחק
-    </button>
-
-    <div class="ftb-message" id="ftbMessage"></div>
-</div>
-
-<div class="ftb-game" id="gameResult">
-    <div class="ftb-game-label" id="gameCategory"></div>
-    <h2 id="gameTitle"></h2>
-    <p id="gameDescription"></p>
-
-    <div id="gameTasks"></div>
-
-    <div class="ftb-tip" id="gameTip"></div>
-
-    <button type="button" class="ftb-button ftb-another" id="anotherGame">
-        🎲 משחק אחר
-    </button>
-</div>
-
-<script>
-(function () {
-
-    const games = [
-        {
-            id: 1,
-            type: "car",
-            ages: ["3-5", "6-8", "9-12"],
-            category: "🚗 משחק רכב",
-            title: "ציידי הדרך",
-            description: "מי יצליח למצוא ראשון כמה שיותר דברים בדרך?",
-            tasks: [
-                "מצאו מכונית אדומה",
-                "מצאו אוטובוס",
-                "מצאו משאית",
-                "מצאו אופנוע",
-                "מצאו מכונית בצבע שאתם אוהבים"
-            ],
-            tip: "על כל דבר שמוצאים מקבלים נקודה. הראשון שמגיע ל־5 נקודות מנצח."
-        },
-        {
-            id: 2,
-            type: "car",
-            ages: ["6-8", "9-12"],
-            category: "🚗 משחק רכב",
-            title: "בינגו כביש",
-            description: "כל ילד צריך למצוא את הפריטים הבאים במהלך הנסיעה.",
-            tasks: [
-                "רכב לבן",
-                "רכב עם גג נפתח",
-                "תחנת דלק",
-                "אופנוע",
-                "רמזור",
-                "משאית",
-                "אוטובוס"
-            ],
-            tip: "מי שמוצא 5 פריטים ראשונים צועק 'בינגו!'"
-        },
-        {
-            id: 3,
-            type: "car",
-            ages: ["3-5", "6-8", "9-12"],
-            category: "🚗 משחק רכב",
-            title: "מי רואה ראשון?",
-            description: "אחד ההורים מכריז על משהו שצריך למצוא. מי שמוצא ראשון מקבל נקודה.",
-            tasks: [
-                "מצאו עץ גדול",
-                "מצאו שלט כחול",
-                "מצאו רכב אדום",
-                "מצאו גשר",
-                "מצאו אופניים"
-            ],
-            tip: "אפשר להמציא משימות חדשות תוך כדי הנסיעה."
-        },
-        {
-            id: 4,
-            type: "nature",
-            ages: ["3-5", "6-8", "9-12"],
-            category: "🌳 משחק טבע",
-            title: "ציד האוצר בטבע",
-            description: "במהלך הטיול נסו למצוא כמה שיותר דברים מהרשימה.",
-            tasks: [
-                "עלה גדול",
-                "אבן מעניינת",
-                "פרח",
-                "חרק",
-                "עץ עם גזע עבה",
-                "משהו בצבע צהוב"
-            ],
-            tip: "לא צריך לקחת שום דבר מהטבע. פשוט מוצאים, מסתכלים וממשיכים."
-        },
-        {
-            id: 5,
-            type: "nature",
-            ages: ["6-8", "9-12"],
-            category: "🌳 משחק טבע",
-            title: "בלשי הטבע",
-            description: "הפכו את הילדים לבלשי טבע וחפשו רמזים מסביב.",
-            tasks: [
-                "מצאו סימן לכך שבעל חיים עבר כאן",
-                "מצאו 2 סוגים שונים של עצים",
-                "מצאו משהו חלק ומשהו מחוספס",
-                "מצאו משהו עגול",
-                "מצאו מקום שבו אפשר להסתתר"
-            ],
-            tip: "אפשר לתת 2 נקודות למשימה שקשה במיוחד למצוא."
-        },
-        {
-            id: 6,
-            type: "park",
-            ages: ["3-5", "6-8"],
-            category: "🛝 משחק פארק",
-            title: "משימת הפארק",
-            description: "הילדים צריכים להשלים סדרת משימות במתקני הפארק.",
-            tasks: [
-                "עלו במתקן הכי גבוה שמותר לכם",
-                "עשו 5 קפיצות",
-                "מצאו מגלשה",
-                "מצאו נדנדה",
-                "מצאו מקום לשבת ולנוח"
-            ],
-            tip: "התאימו תמיד את המשימות לגיל הילד ולכללי הבטיחות של הפארק."
-        },
-        {
-            id: 7,
-            type: "park",
-            ages: ["6-8", "9-12"],
-            category: "🛝 משחק פארק",
-            title: "אתגר 10 הדקות",
-            description: "יש לכם 10 דקות להשלים כמה שיותר משימות.",
-            tasks: [
-                "מצאו 3 מתקנים שונים",
-                "מצאו משהו בצבע כחול",
-                "עשו סיבוב אחד סביב אזור המשחקים",
-                "מצאו מקום מוצל",
-                "מצאו משהו שלא שמתם לב אליו קודם"
-            ],
-            tip: "אפשר לתת נקודה לכל משימה ולבדוק כמה נקודות המשפחה הצליחה לצבור."
-        },
-        {
-            id: 8,
-            type: "family",
-            ages: ["3-5", "6-8", "9-12"],
-            category: "👨‍👩‍👧‍👦 משחק משפחתי",
-            title: "מי מכיר את המשפחה?",
-            description: "כל אחד בתורו עונה על שאלה. לפני שעונים, שאר בני המשפחה צריכים לנחש מה תהיה התשובה.",
-            tasks: [
-                "מה המאכל האהוב עליי?",
-                "איזה מקום הייתי רוצה לבקר בו?",
-                "מה המשחק שאני הכי אוהב?",
-                "מה הייתי לוקח איתי לאי בודד?",
-                "מה הדבר שהכי מצחיק אותי?"
-            ],
-            tip: "הנקודה הולכת למי שהצליח לנחש נכון את התשובה."
-        },
-        {
-            id: 9,
-            type: "family",
-            ages: ["6-8", "9-12"],
-            category: "👨‍👩‍👧‍👦 משחק משפחתי",
-            title: "סיפור בהמשכים",
-            description: "כל אחד מוסיף משפט אחד לסיפור. המטרה היא ליצור סיפור מצחיק ומשוגע.",
-            tasks: [
-                "הראשון מתחיל: 'יום אחד יצאנו לטיול...'",
-                "השני מוסיף דמות",
-                "השלישי מוסיף בעיה",
-                "הרביעי מוסיף פתרון",
-                "בסוף כולם מחליטים איך הסיפור נגמר"
-            ],
-            tip: "ככל שהסיפור מצחיק ומפתיע יותר, המשחק נהיה טוב יותר."
-        },
-        {
-            id: 10,
-            type: "family",
-            ages: ["3-5", "6-8", "9-12"],
-            category: "👨‍👩‍👧‍👦 משחק משפחתי",
-            title: "מצא משהו ש...",
-            description: "ההורה נותן משימה, והילדים צריכים למצוא משהו שמתאים לה.",
-            tasks: [
-                "מצא משהו עגול",
-                "מצא משהו ירוק",
-                "מצא משהו גדול יותר ממך",
-                "מצא משהו שמתחיל באות מ׳",
-                "מצא משהו שהיית רוצה לקחת הביתה"
-            ],
-            tip: "אפשר לשנות את המשימות בהתאם למקום שבו אתם נמצאים."
-        }
-    ];
-
-    let selectedAge = "";
-    let selectedType = "";
-    let currentGames = [];
-
-    const ageButtons = document.querySelectorAll("#ageOptions .ftb-option");
-    const typeButtons = document.querySelectorAll("#typeOptions .ftb-option");
-
-    ageButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            ageButtons.forEach(function (b) {
-                b.classList.remove("selected");
+                // מעבר לתחנה הראשונה
+                window.location.href = `bird.html?game=${newGameId}`;
             });
 
-            button.classList.add("selected");
-            selectedAge = button.getAttribute("data-age");
-
-            document.getElementById("ftbMessage").textContent = "";
+            // המשך משחק קיים
+            if (btnResume) {
+                btnResume.addEventListener('click', () => {
+                    if (gameData && gameData.currentStation) {
+                        window.location.href = `${gameData.currentStation}?game=${gameData.gameId}`;
+                    } else {
+                        window.location.href = `bird.html`;
+                    }
+                });
+            }
         });
-    });
-
-    typeButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            typeButtons.forEach(function (b) {
-                b.classList.remove("selected");
-            });
-
-            button.classList.add("selected");
-            selectedType = button.getAttribute("data-type");
-
-            document.getElementById("ftbMessage").textContent = "";
-        });
-    });
-
-    function getMatchingGames() {
-        return games.filter(function (game) {
-            const ageMatch = game.ages.indexOf(selectedAge) !== -1;
-            const typeMatch = game.type === selectedType;
-            return ageMatch && typeMatch;
-        });
-    }
-
-    function showGame(game) {
-        document.getElementById("gameCategory").textContent = game.category;
-        document.getElementById("gameTitle").textContent = game.title;
-        document.getElementById("gameDescription").textContent = game.description;
-
-        const tasksContainer = document.getElementById("gameTasks");
-        tasksContainer.innerHTML = "";
-
-        game.tasks.forEach(function (task, index) {
-            const taskElement = document.createElement("div");
-            taskElement.className = "ftb-task";
-            taskElement.innerHTML =
-                "<strong>משימה " + (index + 1) + "</strong><br>" + task;
-            tasksContainer.appendChild(taskElement);
-        });
-
-        document.getElementById("gameTip").innerHTML =
-            "<strong>טיפ למשחק:</strong> " + game.tip;
-
-        document.getElementById("gameResult").classList.add("visible");
-
-        setTimeout(function () {
-            document.getElementById("gameResult").scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }, 100);
-    }
-
-    document.getElementById("findGame").addEventListener("click", function () {
-
-        const message = document.getElementById("ftbMessage");
-
-        if (!selectedAge || !selectedType) {
-            message.textContent = "בחרו קודם את גיל הילדים ואת סוג הפעילות.";
-            return;
-        }
-
-        currentGames = getMatchingGames();
-
-        if (!currentGames.length) {
-            message.textContent = "לא מצאנו משחק מתאים. נסו גיל או פעילות אחרת.";
-            return;
-        }
-
-        const randomIndex = Math.floor(Math.random() * currentGames.length);
-        showGame(currentGames[randomIndex]);
-    });
-
-    document.getElementById("anotherGame").addEventListener("click", function () {
-
-        if (!currentGames.length) {
-            currentGames = getMatchingGames();
-        }
-
-        if (!currentGames.length) {
-            return;
-        }
-
-        let randomIndex = Math.floor(Math.random() * currentGames.length);
-
-        showGame(currentGames[randomIndex]);
-    });
-
-})();
-</script>
-</div>
+    </script>
+</body>
+</html>

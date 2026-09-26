@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2e7d32">
+    <title>תעודת חוקר/ת הפארק הרשמית - גני יהושע</title>
+    <meta name="description" content="תעודת חוקר/ת רשמית לחוקרי גני יהושע! סיכום הנקודות, התשובות והתמונות מהמסע.">
+    
+    <!-- פונט Google Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --accent: #ff9800;
+            --accent-hover: #f57c00;
+            --bg-grad-1: #e8f5e9;
+            --bg-grad-2: #f1f8e9;
+            --text-main: #1b5e20;
+            --text-muted: #455a64;
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 16px;
+            color: #263238;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 520px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .content-body {
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        /* Certificate Border Card */
+        .certificate-frame {
+            border: 4px double var(--primary);
+            border-radius: 20px;
+            padding: 20px;
+            background: #ffffff;
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 15px rgba(46, 125, 50, 0.05);
+        }
+
+        .cert-header-icon {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .cert-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+        }
+
+        .cert-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-hover);
+            margin-bottom: 16px;
+        }
+
+        .congrats-text {
+            font-size: 1.05rem;
+            color: #2c3e50;
+            line-height: 1.5;
+            font-weight: 600;
+            margin-bottom: 16px;
+            background: #f1f8e9;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-light);
+        }
+
+        /* Researchers Names Input Section */
+        .researchers-section {
+            text-align: right;
+            margin-bottom: 16px;
+            background: #fafafa;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .researchers-section label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #cfd8dc;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .btn-add {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            width: 42px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .btn-add:hover {
+            background: var(--primary-dark);
+        }
+
+        .names-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .name-tag {
+            background: #e8f5e9;
+            color: var(--primary-dark);
+            border: 1px solid var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .name-tag .remove-btn {
+            cursor: pointer;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        /* Score Badge */
+        .score-box {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ffb74d;
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-item .number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #e65100;
+        }
+
+        .score-item .label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #795548;
+        }
+
+        /* Summary Details */
+        .summary-card {
+            background: #ffffff;
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            text-align: right;
+        }
+
+        .summary-card h3 {
+            font-size: 1.05rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .answers-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.88rem;
+        }
+
+        .answers-list li {
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed #f0f0f0;
+        }
+
+        .answers-list strong {
+            color: var(--primary-dark);
+        }
+
+        .checklist-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .check-tag {
+            background: #f1f8e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn-restart {
+            background: #ffffff;
+            color: var(--text-muted);
+            border: 1px solid #cfd8dc;
+        }
+
+        /* Print CSS Adjustments */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .app-container {
+                max-width: 100%;
+                box-shadow: none;
+                border: none;
+                backdrop-filter: none;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .certificate-frame {
+                border: 3px solid #2e7d32;
+                page-break-inside: avoid;
+            }
+            .summary-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="content-body">
+            
+            <!-- מסגרת תעודה רשמית -->
+            <div class="certificate-frame">
+                <div class="cert-header-icon">🏆</div>
+                <h1 class="cert-title">תעודת חוקר/ת הפארק</h1>
+                <div class="cert-subtitle">גני יהושע - תל אביב</div>
+
+                <div class="congrats-text">
+                    כל הכבוד!!! 🎉<br>
+                    עמדתם בהצלחה במשימה! וסיימתם את המחקר בפארק גני יהושע!
+                </div>
+
+                <!-- ניהול שמות החוקרים -->
+                <div class="researchers-section no-print">
+                    <label for="researcherInput">הכניסו את שם החוקר/ת (ניתן להוסיף ב-+ שמות נוספים):</label>
+                    <div class="input-group">
+                        <input type="text" id="researcherInput" placeholder="שם הילד/ה..." onkeypress="handleKeyPress(event)">
+                        <button class="btn-add" onclick="addResearcherName()" title="הוסף שם">+</button>
+                    </div>
+                    <div class="names-tags" id="namesContainer"></div>
+                </div>
+
+                <!-- תצוגת השמות בהדפסה/תצוגה סופית -->
+                <div id="printNamesDisplay" style="margin-bottom: 15px; font-weight: 700; font-size: 1.1rem; color: var(--primary-dark);">
+                    מוענקת באהבה לחוקרי/ות הפארק: <span id="displayNamesList">_______</span>
+                </div>
+
+                <!-- סה"כ ניקוד ומדליות -->
+                <div class="score-box">
+                    <div class="score-item">
+                        <div class="number" id="finalTotalScore">70</div>
+                        <div class="label">סה"כ נקודות שנאספו</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="number">7 / 7</div>
+                        <div class="label">תחנות הושלמו</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="number">⭐ 100%</div>
+                        <div class="label">דרגת הצלחה</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- פירוט מה שאספו וענו בדרך -->
+            <div class="summary-card">
+                <h3>🔍 מה גיליתם בצ'ק-ליסט המסכם:</h3>
+                <div class="checklist-tags" id="checklistSummary">
+                    <!-- יתמלא דינמית -->
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <h3>📜 סיכום תשובות ומשימות המסלול:</h3>
+                <ul class="answers-list" id="answersSummary">
+                    <!-- יתמלא דינמית מה-LocalStorage -->
+                </ul>
+            </div>
+
+            <!-- כפתורי פעולה (יוסתרו בהדפסה) -->
+            <div class="no-print">
+                <button class="btn btn-print" onclick="window.print()">
+                    <span>🖨️ הדפס תעודה וסיכום משחק</span>
+                </button>
+
+                <button class="btn btn-restart" onclick="restartGame()">
+                    <span>🔄 התחל משחק חדש</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- לוגיקת JavaScript -->
+    <script>
+        let researcherNames = [];
+
+        const ITEM_NAMES = {
+            bikes: "🚲 אופניים",
+            cactus: "🌵 קקטוס",
+            palm: "🌴 עץ דקל",
+            wooden: "🪵 מתקני עץ",
+            boats: "🚣 סירות",
+            bird: "🦜 ציפור",
+            stream: "🌊 נחל",
+            dog: "🐕 כלב",
+            fountain: "⛲ מזרקה",
+            icecream: "🍦 דוכן גלידה",
+            eucalyptus: "🌳 עץ אקליפטוס"
+        };
+
+        const STATION_LABELS = {
+            station1: "תחנה 1: יציאה לדרך",
+            station2: "תחנה 2: עולם הצמחים והעצים",
+            station3: "תחנה 3: ציפורים ובעלי חיים",
+            station4: "תחנה 4: האגם והסירות",
+            station5: "תחנה 5: המתקנים והספורט",
+            station6: "תחנה 6: שמירת הטבע והסביבה",
+            final: "תחנה 7: צ'ק-ליסט סיום"
+        };
+
+        function getGameData() {
+            try {
+                const primaryData = JSON.parse(localStorage.getItem("parkChallenge_game") || "{}");
+                const fallbackData = JSON.parse(localStorage.getItem("parkGame") || "{}");
+                return { ...fallbackData, ...primaryData };
+            } catch (e) {
+                return {};
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadGameSummary();
+        });
+
+        /* --- טעינת סיכום הנתונים מ-LocalStorage --- */
+        function loadGameSummary() {
+            const data = getGameData();
+
+            // 1. חישוב נקודות סופי
+            let total = data.totalScore || 0;
+            if (!total && data.scores) {
+                total = Object.values(data.scores).reduce((a, b) => Number(a) + Number(b), 0);
+            }
+            document.getElementById("finalTotalScore").textContent = total;
+
+            // 2. טעינת שמות שמורים
+            if (data.researcherNames && Array.isArray(data.researcherNames)) {
+                researcherNames = data.researcherNames;
+                renderNameTags();
+            }
+
+            // 3. הצגת צ'ק-ליסט
+            const checklistContainer = document.getElementById("checklistSummary");
+            checklistContainer.innerHTML = "";
+            if (data.checklist && data.checklist.length > 0) {
+                data.checklist.forEach(itemKey => {
+                    const tag = document.createElement("span");
+                    tag.className = "check-tag";
+                    tag.textContent = ITEM_NAMES[itemKey] || itemKey;
+                    checklistContainer.appendChild(tag);
+                });
+            } else {
+                checklistContainer.innerHTML = "<em>לא סומנו פריטים.</em>";
+            }
+
+            // 4. הצגת תשובות שנאספו לאורך התחנות
+            const answersContainer = document.getElementById("answersSummary");
+            answersContainer.innerHTML = "";
+
+            if (data.answers && Object.keys(data.answers).length > 0) {
+                for (const [stKey, ans] of Object.entries(data.answers)) {
+                    const li = document.createElement("li");
+                    const title = STATION_LABELS[stKey] || stKey;
+                    li.innerHTML = `<strong>${title}:</strong> ${ans}`;
+                    answersContainer.appendChild(li);
+                }
+            } else {
+                // ברירת מחדל אסתטית במידה ולא נשמרו תשובות טקסטואליות
+                answersContainer.innerHTML = `
+                    <li><strong>תחנות 1-6:</strong> כל האתגרים, החידות והמשימות הושלמו בהצלחה!</li>
+                    <li><strong>ציוד וממצאים:</strong> אותרו ונחקרו בהצלחה בשטח הפארק.</li>
+                `;
+            }
+        }
+
+        /* --- ניהול שמות הילדים/החוקרים --- */
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                addResearcherName();
+            }
+        }
+
+        function addResearcherName() {
+            const input = document.getElementById("researcherInput");
+            const name = input.value.trim();
+            if (name && !researcherNames.includes(name)) {
+                researcherNames.push(name);
+                input.value = "";
+                saveNamesToStorage();
+                renderNameTags();
+            }
+        }
+
+        function removeName(index) {
+            researcherNames.splice(index, 1);
+            saveNamesToStorage();
+            renderNameTags();
+        }
+
+        function renderNameTags() {
+            const container = document.getElementById("namesContainer");
+            const displaySpan = document.getElementById("displayNamesList");
+            container.innerHTML = "";
+
+            if (researcherNames.length > 0) {
+                researcherNames.forEach((name, idx) => {
+                    const tag = document.createElement("span");
+                    tag.className = "name-tag";
+                    tag.innerHTML = `${name} <span class="remove-btn" onclick="removeName(${idx})">×</span>`;
+                    container.appendChild(tag);
+                });
+                displaySpan.textContent = researcherNames.join(", ");
+            } else {
+                displaySpan.textContent = "_______";
+            }
+        }
+
+        function saveNamesToStorage() {
+            const data = getGameData();
+            data.researcherNames = researcherNames;
+            localStorage.setItem("parkChallenge_game", JSON.stringify(data));
+        }
+
+        /* --- איפוס משחק --- */
+        function restartGame() {
+            if (confirm("האם ברצונכם לאפס את המשחק ולהתחיל מחדש?")) {
+                localStorage.removeItem("parkChallenge_game");
+                localStorage.removeItem("parkGame");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</body>
+</html>

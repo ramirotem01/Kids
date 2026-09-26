@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2e7d32">
+    <title>תחנה 3: הבלון הפורח - אתגר גני יהושע</title>
+    <meta name="description" content="משימת חוקרים בתחנת הבלון הפורח בפארק גני יהושע. צלמו את הבלון הפורח וענו על שאלת העופפות.">
+    
+    <!-- פונט Google Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --accent: #ff9800;
+            --accent-hover: #f57c00;
+            --bg-grad-1: #e8f5e9;
+            --bg-grad-2: #f1f8e9;
+            --text-main: #1b5e20;
+            --text-muted: #455a64;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 16px;
+            color: #263238;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* Top Progress Bar */
+        .progress-header {
+            background: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .logo-badge {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .score-counter {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            background: rgba(255, 152, 0, 0.1);
+            padding: 6px 12px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Progress Bar Section */
+        .progress-wrap {
+            padding: 12px 20px 0 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-bg {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            height: 100%;
+            width: 42.85%; /* תחנה 3 מתוך 7 */
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* Hero Image Container */
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #81d4fa, #29b6f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+        }
+
+        .content-body {
+            padding: 0 20px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .station-header {
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+
+        .station-badge {
+            display: inline-block;
+            background: var(--bg-grad-1);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .station-title h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1.2;
+        }
+
+        .station-title p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Card Elements */
+        .card {
+            background: #ffffff;
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #37474f;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        /* Hint Card */
+        .hint-box {
+            background: #fff8e1;
+            border-right: 4px solid #ffb300;
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 10px;
+        }
+
+        .hint-header {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hint-info {
+            font-size: 0.85rem;
+            color: #5d4037;
+            line-height: 1.5;
+        }
+
+        /* Options Group */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: #e8f5e9;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #37474f;
+            line-height: 1.4;
+        }
+
+        .option-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* Photo Upload UI */
+        .photo-uploader {
+            display: block;
+            background: #f4faf5;
+            border: 2px dashed #a9d4b6;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .photo-uploader input {
+            display: none;
+        }
+
+        #photoPreview {
+            display: none;
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-top: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .photo-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-decoration: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn-light {
+            background: #ffffff;
+            color: var(--text-muted);
+            border: 1px solid #cfd8dc;
+            margin-top: 8px;
+        }
+
+        /* Status Alerts */
+        .status-alert {
+            display: none;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .status-alert.success {
+            background: #d8f3dc;
+            color: #075b43;
+        }
+
+        .status-alert.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- סרגל עליון -->
+        <div class="progress-header">
+            <div class="logo-badge">
+                <span>🌳</span>
+                <span>אתגר גני יהושע</span>
+            </div>
+            <div class="score-counter">
+                <span>⭐ ניקוד:</span>
+                <span id="totalScoreDisplay">0</span>
+                <span>/ 70</span>
+            </div>
+        </div>
+
+        <!-- בר התקדמות -->
+        <div class="progress-wrap">
+            <div class="progress-label">
+                <span>התקדמות במסלול</span>
+                <strong>43% (תחנה 3/7)</strong>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <!-- תמונת נושא / תצוגת מקום -->
+        <div class="hero-image-wrapper">
+            <img id="mainHeroImage" src="https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?auto=format&fit=crop&w=800&q=80" alt="הבלון הפורח גני יהושע" class="hero-image" onerror="this.style.display='none'; document.getElementById('heroPlaceholder').style.display='flex';">
+            <div id="heroPlaceholder" class="hero-placeholder" style="display: none;">🎈☁️</div>
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- כותרת תחנה -->
+            <div class="station-header">
+                <span class="station-badge">תחנה 3 מתוך 7</span>
+                <div class="station-title">
+                    <h1>🎈 הבלון הפורח</h1>
+                    <p>מגביהים עוף ומגלים את סודות התעופה!</p>
+                </div>
+            </div>
+
+            <!-- כרטיס 1: הוראות הגעה ורמז -->
+            <div class="card">
+                <h2>🔎 המשימה שלכם</h2>
+                <p>
+                    משימה מלהיבה במיוחד! צעדו אל הבלון הפורח הגדול המרחף מעל הפארק.
+                </p>
+
+                <div class="hint-box">
+                    <div class="hint-header">
+                        <span>🧭</span>
+                        <span>טיפ להגעה לאתר</span>
+                    </div>
+                    <div class="hint-info">
+                        ממשיכים משבע טחנות בשביל שהנחל משני צדדיו לכיוון הפארק, תמשיכו ישר לכיוון האגם, ואתם תראו אותו ליד מבנה עגול שזה קולנוע 7D. הבלון נמצא ממש ליד!
+                    </div>
+                </div>
+            </div>
+
+            <!-- כרטיס 2: השאלה -->
+            <div class="card">
+                <h2>❓ שאלת חוקרים: איך כדור פורח מצליח לעוף לשמיים?</h2>
+                <p>איך לדעתכם כדור פורח מצליח להתרומם מהקרקע ולעוף גבוה בשמיים? בחרו את התשובה הנכונה:</p>
+
+                <div class="options-group">
+                    <label class="option-item" onclick="selectOption(this, 'a')">
+                        <div class="option-label">
+                            <input type="radio" name="balloonQuestion" value="a">
+                            <span>א. באמצעות כנפיים גדולות שמנפנפות במהירות ומרימות אותו לשמיים.</span>
+                        </div>
+                    </label>
+
+                    <label class="option-item" onclick="selectOption(this, 'b')">
+                        <div class="option-label">
+                            <input type="radio" name="balloonQuestion" value="b">
+                            <span>ב. באמצעות אוויר חם או גז הליום שמאפשרים לכדור הפורח להתרומם.</span>
+                        </div>
+                    </label>
+
+                    <label class="option-item" onclick="selectOption(this, 'c')">
+                        <div class="option-label">
+                            <input type="radio" name="balloonQuestion" value="c">
+                            <span>ג. באמצעות מנוע חזק כמו של מכונית, שדוחף אותו למעלה.</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- כרטיס 3: צילום הבלון הפורח -->
+            <div class="card">
+                <h2>📸 משימת צילום הבלון</h2>
+                <p>צלמו תמונה של הבלון הפורח מעל הרקע או יחד עם המשפחה למזכרת:</p>
+
+                <label class="photo-uploader">
+                    📷 צלמו את הבלון הפורח
+                    <input type="file" id="photoInput" accept="image/*" capture="environment">
+                </label>
+
+                <img id="photoPreview" alt="תצוגה מקדימה של התמונה">
+
+                <div class="photo-note">
+                    🔒 התמונה נשארת במכשירכם בלבד ואינה נשלחת לשרת.
+                </div>
+            </div>
+
+            <!-- כרטיס 4: סיום ושמירה -->
+            <div class="card">
+                <h2>✅ סיימתם את התחנה?</h2>
+                <p>בדקו שבחרתם תשובה, שמרו את התוצאה והמשיכו לתחנה הבאה.</p>
+
+                <button class="btn btn-primary" onclick="completeMission()">
+                    <span>שמרו ניקוד והמשיכו לתחנה 4</span>
+                    <span>⬅️</span>
+                </button>
+
+                <button class="btn btn-light" onclick="window.location.href='index.html'">
+                    🔙 חזרה למסך הראשי
+                </button>
+
+                <div class="status-alert success" id="completeSuccess">
+                    🎉 כל הכבוד! התשובה נשמרה בהצלחה. מעביר לתחנה הבאה...
+                </div>
+                <div class="status-alert error" id="completeError">
+                    אנא בחרו תשובה לשאלה לפני שממשיכים!
+                </div>
+            </div>
+
+            <div class="footer">
+                אתגר גני יהושע · משחק משפחתי בטבע
+                <br>
+                <a href="index.html">חזרה למסך הראשי</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- לוגיקת JavaScript -->
+    <script>
+        let selectedAnswer = null;
+
+        function getGameData() {
+            try {
+                const primaryData = JSON.parse(localStorage.getItem("parkChallenge_game") || "{}");
+                const fallbackData = JSON.parse(localStorage.getItem("parkGame") || "{}");
+                return { ...fallbackData, ...primaryData };
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveGameData(data) {
+            const dataStr = JSON.stringify(data);
+            localStorage.setItem("parkChallenge_game", dataStr);
+            localStorage.setItem("parkGame", dataStr);
+        }
+
+        function updateTotalScoreDisplay() {
+            const data = getGameData();
+            let total = data.totalScore || 0;
+
+            if (!total && data.scores) {
+                total = Object.values(data.scores).reduce((a, b) => Number(a) + Number(b), 0);
+            }
+
+            document.getElementById("totalScoreDisplay").textContent = total;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateTotalScoreDisplay();
+
+            // שחזור תשובה שנבחרה בעבר במידה וקיים
+            const data = getGameData();
+            let savedAnswer = null;
+
+            if (data.stations && data.stations['balloon']) {
+                savedAnswer = data.stations['balloon'].answer;
+            } else if (data.answers && data.answers.balloon) {
+                savedAnswer = data.answers.balloon;
+            }
+
+            if (savedAnswer) {
+                const radio = document.querySelector(`input[name="balloonQuestion"][value="${savedAnswer}"]`);
+                if (radio) {
+                    radio.checked = true;
+                    selectOption(radio.closest('.option-item'), savedAnswer);
+                }
+            }
+        });
+
+        /* --- בחירת תשובה --- */
+        function selectOption(element, answerVal) {
+            document.querySelectorAll(".option-item").forEach(el => el.classList.remove("selected"));
+            element.classList.add("selected");
+            
+            const radio = element.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+
+            selectedAnswer = answerVal;
+            document.getElementById("completeError").style.display = "none";
+        }
+
+        /* --- העלאת תמונה מקומית --- */
+        document.getElementById("photoInput").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith("image/")) {
+                alert("נא לבחור קובץ תמונה בלבד.");
+                return;
+            }
+
+            const preview = document.getElementById("photoPreview");
+            const mainHero = document.getElementById("mainHeroImage");
+
+            const imgUrl = URL.URL ? URL.createObjectURL(file) : null;
+            if (imgUrl) {
+                preview.src = imgUrl;
+                preview.style.display = "block";
+
+                if (mainHero) {
+                    mainHero.src = imgUrl;
+                }
+            }
+        });
+
+        /* --- שמירה ומעבר לתחנה הבאה --- */
+        function completeMission() {
+            if (!selectedAnswer) {
+                document.getElementById("completeError").style.display = "block";
+                return;
+            }
+
+            // חישוב ניקוד: 10 נקודות על תשובה נכונה (ב'), 3 נקודות על השתתפות בניסיון אחר
+            const pointsEarned = (selectedAnswer === 'b') ? 10 : 3;
+
+            const data = getGameData();
+
+            // עדכון נתונים במבנה 1
+            if (!data.stations) data.stations = {};
+            const prevPoints = data.stations['balloon'] ? data.stations['balloon'].points : 0;
+            
+            data.stations['balloon'] = {
+                completed: true,
+                points: pointsEarned,
+                answer: selectedAnswer,
+                completedAt: new Date().toISOString()
+            };
+
+            // עדכון נתונים במבנה 2 (תאימות מלאה)
+            if (!data.scores) data.scores = {};
+            data.scores.balloon = pointsEarned;
+            
+            if (!data.completed) data.completed = {};
+            data.completed.balloon = true;
+
+            // חישוב סך הניקוד
+            data.totalScore = (data.totalScore || 0) - prevPoints + pointsEarned;
+            data.currentStation = 'station4.html'; // מעבר לתחנה 4
+            data.updatedAt = new Date().toISOString();
+
+            saveGameData(data);
+            updateTotalScoreDisplay();
+
+            document.getElementById("completeError").style.display = "none";
+            document.getElementById("completeSuccess").style.display = "block";
+
+            setTimeout(() => {
+                window.location.href = "station4.html";
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

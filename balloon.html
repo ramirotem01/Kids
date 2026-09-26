@@ -367,6 +367,7 @@
             font-weight: 700;
             text-align: center;
             font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .status-alert.success {
@@ -506,7 +507,7 @@
             <!-- כרטיס 4: סיום ושמירה -->
             <div class="card">
                 <h2>✅ סיימתם את התחנה?</h2>
-                <p>בדקו שבחרתם תשובה, שמרו את התוצאה והמשיכו לתחנה הבאה.</p>
+                <p>בדקו שבחרתם את התשובה הנכונה, שמרו את התוצאה והמשיכו לתחנה הבאה.</p>
 
                 <button class="btn btn-primary" onclick="completeMission()">
                     <span>שמרו ניקוד והמשיכו לתחנה 4</span>
@@ -517,11 +518,15 @@
                     🔙 חזרה למסך הראשי
                 </button>
 
+                <!-- הודעות משוב -->
                 <div class="status-alert success" id="completeSuccess">
-                    🎉 כל הכבוד! התשובה נשמרה בהצלחה. מעביר לתחנה הבאה...
+                    🎉 כל הכבוד! תשובה נכונה! צברתם 10 נקודות. מעביר לתחנה הבאה...
                 </div>
                 <div class="status-alert error" id="completeError">
                     אנא בחרו תשובה לשאלה לפני שממשיכים!
+                </div>
+                <div class="status-alert error" id="wrongAnswerError">
+                    🤔 אופס, זו לא התשובה הנכונה. חשבו שוב ובחרו בתשובה אחרת!
                 </div>
             </div>
 
@@ -537,6 +542,7 @@
     <!-- לוגיקת JavaScript -->
     <script>
         let selectedAnswer = null;
+        const CORRECT_ANSWER = 'b'; // התשובה הנכונה היא ב'
 
         function getGameData() {
             try {
@@ -596,7 +602,10 @@
             if (radio) radio.checked = true;
 
             selectedAnswer = answerVal;
+            
+            // איפוס הודעות שגיאה בעת שינוי בחירה
             document.getElementById("completeError").style.display = "none";
+            document.getElementById("wrongAnswerError").style.display = "none";
         }
 
         /* --- העלאת תמונה מקומית --- */
@@ -612,7 +621,7 @@
             const preview = document.getElementById("photoPreview");
             const mainHero = document.getElementById("mainHeroImage");
 
-            const imgUrl = URL.URL ? URL.createObjectURL(file) : null;
+            const imgUrl = URL.createObjectURL ? URL.createObjectURL(file) : null;
             if (imgUrl) {
                 preview.src = imgUrl;
                 preview.style.display = "block";
@@ -625,14 +634,25 @@
 
         /* --- שמירה ומעבר לתחנה הבאה --- */
         function completeMission() {
+            // הסתרת כל ההודעות
+            document.getElementById("completeError").style.display = "none";
+            document.getElementById("wrongAnswerError").style.display = "none";
+            document.getElementById("completeSuccess").style.display = "none";
+
+            // 1. בדיקה אם נבחרה תשובה
             if (!selectedAnswer) {
                 document.getElementById("completeError").style.display = "block";
                 return;
             }
 
-            // חישוב ניקוד: 10 נקודות על תשובה נכונה (ב'), 3 נקודות על השתתפות בניסיון אחר
-            const pointsEarned = (selectedAnswer === 'b') ? 10 : 3;
+            // 2. בדיקה אם התשובה שנבחרה אינה נכונה
+            if (selectedAnswer !== CORRECT_ANSWER) {
+                document.getElementById("wrongAnswerError").style.display = "block";
+                return; // עוצרים ולא מאפשרים להתקדם
+            }
 
+            // 3. במידה והתשובה נכונה (ב')
+            const pointsEarned = 10;
             const data = getGameData();
 
             // עדכון נתונים במבנה 1
@@ -661,7 +681,6 @@
             saveGameData(data);
             updateTotalScoreDisplay();
 
-            document.getElementById("completeError").style.display = "none";
             document.getElementById("completeSuccess").style.display = "block";
 
             setTimeout(() => {

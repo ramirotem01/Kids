@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#2e7d32">
     <title>תעודת חוקר/ת הפארק הרשמית - גני יהושע</title>
-    <meta name="description" content="תעודת חוקר/ת רשמית לחוקרי גני יהושע! סיכום הנקודות, התשובות והתמונות מהמסע.">
+    <meta name="description" content="תעודת חוקר/ת רשמית לחוקרי גני יהושע! סיכום הנקודות, המקומות, התשובות והתמונות מהמסע.">
     
     <!-- פונט Google Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -223,7 +223,7 @@
             color: #795548;
         }
 
-        /* Summary Details */
+        /* Summary Cards & Places Visited */
         .summary-card {
             background: #ffffff;
             border: 1px solid rgba(46, 125, 50, 0.15);
@@ -240,6 +240,26 @@
             margin-bottom: 10px;
             border-bottom: 1px solid #e0e0e0;
             padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .place-item {
+            background: #f1f8e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-dark);
             display: flex;
             align-items: center;
             gap: 6px;
@@ -269,9 +289,9 @@
         }
 
         .check-tag {
-            background: #f1f8e9;
-            border: 1px solid #c8e6c9;
-            color: #2e7d32;
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            color: #1565c0;
             padding: 3px 8px;
             border-radius: 8px;
             font-size: 0.8rem;
@@ -382,14 +402,28 @@
                 </div>
             </div>
 
-            <!-- פירוט מה שאספו וענו בדרך -->
+            <!-- מקומות שביקרתם בדרך -->
             <div class="summary-card">
-                <h3>🔍 מה גיליתם בצ'ק-ליסט המסכם:</h3>
+                <h3>📍 המקומות שנחקרו במסלול:</h3>
+                <div class="places-grid">
+                    <div class="place-item">🦜 פארק הצפרות (ראש ציפור)</div>
+                    <div class="place-item">🌊 אתר שבע תחנות</div>
+                    <div class="place-item">🎈 הבלון הפורח</div>
+                    <div class="place-item">🖐️ גן חמשת החושים</div>
+                    <div class="place-item">🌴 הגן הטרופי</div>
+                    <div class="place-item">🌵 גן הקקטוסים</div>
+                </div>
+            </div>
+
+            <!-- פירוט מה שאספו בצ'ק-ליסט המסכם -->
+            <div class="summary-card">
+                <h3>🔍 ממצאים וציוד שסומנו בצ'ק-ליסט:</h3>
                 <div class="checklist-tags" id="checklistSummary">
                     <!-- יתמלא דינמית -->
                 </div>
             </div>
 
+            <!-- פירוט תשובות ומשימות -->
             <div class="summary-card">
                 <h3>📜 סיכום תשובות ומשימות המסלול:</h3>
                 <ul class="answers-list" id="answersSummary">
@@ -481,7 +515,7 @@
                     checklistContainer.appendChild(tag);
                 });
             } else {
-                checklistContainer.innerHTML = "<em>לא סומנו פריטים.</em>";
+                checklistContainer.innerHTML = "<em>כל הפריטים סומנו בהצלחה!</em>";
             }
 
             // 4. הצגת תשובות שנאספו לאורך התחנות

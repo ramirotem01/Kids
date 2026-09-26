@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2e7d32">
+    <title>תחנה 2: שבע טחנות והמבנה העתיק - אתגר גני יהושע</title>
+    <meta name="description" content="תחנה 2 במשחק אתגר גני יהושע - שבע טחנות. גלו את המבנה העתיק, צלמו אותו, הקשיבו להדרכה הקולית שבאתר וענו על השאלה כדי לצבור נקודות!">
+    
+    <!-- Google Rubik Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --accent: #ff9800;
+            --accent-hover: #f57c00;
+            --bg-grad-1: #e8f5e9;
+            --bg-grad-2: #f1f8e9;
+            --text-main: #1b5e20;
+            --text-muted: #455a64;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 16px;
+            color: #263238;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* Top Progress Bar Header */
+        .progress-header {
+            background: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .logo-badge {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .score-counter {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            background: rgba(255, 152, 0, 0.1);
+            padding: 6px 12px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Trail Progress */
+        .progress-wrap {
+            padding: 12px 20px 0 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-bg {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            height: 100%;
+            width: 28.57%; /* Station 2 of 7 */
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* Hero Image Container */
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 210px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #81c784, #388e3c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to top, var(--card-bg), transparent);
+        }
+
+        .content-body {
+            padding: 0 20px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .station-header {
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+
+        .station-badge {
+            display: inline-block;
+            background: var(--bg-grad-1);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .station-title h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1.2;
+        }
+
+        .station-title p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Card Elements */
+        .card {
+            background: #ffffff;
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #37474f;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation Hint Box */
+        .hint-box {
+            background: #fff8e1;
+            border-right: 4px solid #ffb300;
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 10px;
+        }
+
+        .hint-header {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f57f17;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hint-info {
+            font-size: 0.85rem;
+            color: #5d4037;
+            line-height: 1.5;
+        }
+
+        /* On-Site Audio Instruction Box */
+        .audio-site-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 1px solid #90caf9;
+            border-radius: 18px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .audio-site-icon {
+            font-size: 2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .audio-site-content h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0d47a1;
+            margin-bottom: 4px;
+        }
+
+        .audio-site-content p {
+            font-size: 0.88rem;
+            color: #1565c0;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        /* Options Group */
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 14px;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: #e8f5e9;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #37474f;
+            line-height: 1.4;
+        }
+
+        .option-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .option-points {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            background: rgba(255, 152, 0, 0.12);
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            margin-right: 6px;
+        }
+
+        /* Photo Upload UI */
+        .photo-uploader {
+            display: block;
+            background: #f4faf5;
+            border: 2px dashed #a9d4b6;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .photo-uploader input {
+            display: none;
+        }
+
+        #photoPreview {
+            display: none;
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-top: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .photo-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-decoration: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 18px rgba(255, 152, 0, 0.3);
+        }
+
+        .btn-light {
+            background: #ffffff;
+            color: var(--text-muted);
+            border: 1px solid #cfd8dc;
+            margin-top: 8px;
+        }
+
+        /* Status Alert */
+        .status-alert {
+            display: none;
+            background: #d8f3dc;
+            color: #075b43;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 12px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 15px;
+        }
+
+        .footer a {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Top Bar Header -->
+        <div class="progress-header">
+            <div class="logo-badge">
+                <span>🌳</span>
+                <span>אתגר גני יהושע</span>
+            </div>
+            <div class="score-counter">
+                <span>⭐ ניקוד:</span>
+                <span id="totalScoreDisplay">0</span>
+                <span>/ 70</span>
+            </div>
+        </div>
+
+        <!-- Trail Progress Bar -->
+        <div class="progress-wrap">
+            <div class="progress-label">
+                <span>התקדמות במסלול</span>
+                <strong>28% (תחנה 2/7)</strong>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="hero-image-wrapper">
+            <img id="mainHeroImage" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80" alt="שבע טחנות" class="hero-image" onerror="this.style.display='none'; document.getElementById('heroPlaceholder').style.display='flex';">
+            <div id="heroPlaceholder" class="hero-placeholder" style="display: none;">🏛️🌊</div>
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="content-body">
+            
+            <!-- Station Title Header -->
+            <div class="station-header">
+                <span class="station-badge">תחנה 2 מתוך 7</span>
+                <div class="station-title">
+                    <h1>🌊 שבע טחנות והמבנה העתיק</h1>
+                    <p>כוח המים וההיסטוריה של נחל הירקון</p>
+                </div>
+            </div>
+
+            <!-- Card 1: Location & Navigation Hint -->
+            <div class="card">
+                <h2>🔎 המשימה שלכם</h2>
+                <p>
+                    הגעתם לאחד המקומות המרתקים והיפים בפארק! כאן פעלו בעבר טחנות קמח עתיקות שניצלו את זרימת מי הירקון.
+                </p>
+
+                <div class="hint-box">
+                    <div class="hint-header">
+                        <span>🗺️</span>
+                        <span>טיפ והוראות הגעה לאתר</span>
+                    </div>
+                    <div class="hint-info">
+                        אם אתם מגיעים מאתר הצפרות, חזרו בשביל ממערב למזרח כ-200 מטר וממשם המשיכו ישר בהליכה רגילה.
+                        <br><br>
+                        🚗 <strong>למגיעים מרחוק (Waze / Moovit):</strong> חפשו <em>"שבע טחנות, רחוב רוקח 84, רמת גן"</em> ומשם ישר בשביל דקות ספורות לאתר.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Photo Challenge -->
+            <div class="card">
+                <h2>📸 משימת צילום: המבנה העתיק</h2>
+                <p>
+                    מצאו את המבנה העתיק של טחנת הקמח ליד הנחל וצלמו תמונה משפחתית למזכרת!
+                </p>
+
+                <label class="photo-uploader">
+                    📷 צלמו את המבנה העתיק או בחרו מהגלריה
+                    <input type="file" id="photoInput" accept="image/*" capture="environment">
+                </label>
+
+                <img id="photoPreview" alt="תצוגה מקדימה של המבנה העתיק">
+
+                <div class="photo-note">
+                    🔒 התמונה נשארת במכשירכם בלבד.
+                </div>
+            </div>
+
+            <!-- Card 3: On-Site Audio Information -->
+            <div class="card">
+                <h2>🎧 הדרכה קולית באתר</h2>
+                <p>
+                    רוצים לשמוע עוד על ההיסטוריה המרתקת של המקום?
+                </p>
+
+                <div class="audio-site-box">
+                    <div class="audio-site-icon">📢</div>
+                    <div class="audio-site-content">
+                        <h3>פעילות קולית בשטח האתר!</h3>
+                        <p>ההדרכה הקולית מופעלת ישירות בשטח: גשו ל<strong>מבנה העתיק מצד שמאל</strong>, שם תוכלו להקשיב לפעילות הקולית!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Trivia Question / Points Challenge -->
+            <div class="card">
+                <h2>❓ שאלת אתגר: כוח המים</h2>
+                <p>
+                    לאחר שצפיתם במבנה והקשבתם להסברים, ענו על השאלה:
+                    <br>
+                    <strong>איך היו משתמשים בנחל כדי לייצר את הקמח?</strong>
+                </p>
+
+                <div class="options-group">
+                    <label class="option-item" onclick="selectOption(this, 10)">
+                        <div class="option-label">
+                            <input type="radio" name="milling" value="10">
+                            <span>א. היו משתמשים בכוח המים כדי לסובב אבני ריחיים שטוחנות את גרגרי החיטה לקמח.</span>
+                        </div>
+                        <div class="option-points">+10 נקודות</div>
+                    </label>
+
+                    <label class="option-item" onclick="selectOption(this, 0)">
+                        <div class="option-label">
+                            <input type="radio" name="milling" value="0">
+                            <span>ב. היו שופכים את גרגרי החיטה לנחל ומחכים שהמים יהפכו אותם לקמח.</span>
+                        </div>
+                        <div class="option-points">0 נקודות</div>
+                    </label>
+
+                    <label class="option-item" onclick="selectOption(this, 0)">
+                        <div class="option-label">
+                            <input type="radio" name="milling" value="0">
+                            <span>ג. היו מניחים את החיטה בשמש עד שהיא הופכת לאבקת קמח.</span>
+                        </div>
+                        <div class="option-points">0 נקודות</div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Card 5: Complete & Save -->
+            <div class="card">
+                <h2>✅ סיימתם את התחנה?</h2>
+                <p>בדקו שבחרתם תשובה, שמרו את התוצאה והמשיכו לתחנה הבאה במסלול.</p>
+
+                <button class="btn btn-primary" onclick="completeMission()">
+                    <span>שמרו ניקוד והמשיכו לתחנה 3</span>
+                    <span>⬅️</span>
+                </button>
+
+                <button class="btn btn-light" onclick="window.location.href='index.html'">
+                    🔙 חזרה למסך הראשי
+                </button>
+
+                <div class="status-alert" id="completeSuccess">
+                    🎉 התוצאה נשמרה בהצלחה! מעביר לתחנה הבאה...
+                </div>
+            </div>
+
+            <div class="footer">
+                אתגר גני יהושע · משחק משפחתי בטבע
+                <br>
+                <a href="index.html">חזרה למסך הראשי</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let selectedPoints = null;
+
+        /* --- LocalStorage Sync --- */
+        function getGameData() {
+            try {
+                const primaryData = JSON.parse(localStorage.getItem("parkChallenge_game") || "{}");
+                const fallbackData = JSON.parse(localStorage.getItem("parkGame") || "{}");
+                return { ...fallbackData, ...primaryData };
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveGameData(data) {
+            const dataStr = JSON.stringify(data);
+            localStorage.setItem("parkChallenge_game", dataStr);
+            localStorage.setItem("parkGame", dataStr);
+        }
+
+        function updateTotalScoreDisplay() {
+            const data = getGameData();
+            let total = data.totalScore || 0;
+
+            if (!total && data.scores) {
+                total = Object.values(data.scores).reduce((a, b) => Number(a) + Number(b), 0);
+            }
+
+            document.getElementById("totalScoreDisplay").textContent = total;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateTotalScoreDisplay();
+
+            // Restore previously selected trivia answer if available
+            const data = getGameData();
+            let savedScore = null;
+
+            if (data.stations && data.stations['stream']) {
+                savedScore = data.stations['stream'].points;
+            } else if (data.scores && data.scores.stream !== undefined) {
+                savedScore = data.scores.stream;
+            }
+
+            if (savedScore !== null) {
+                const radio = document.querySelector(`input[name="milling"][value="${savedScore}"]`);
+                if (radio) {
+                    radio.checked = true;
+                    selectOption(radio.closest('.option-item'), Number(savedScore));
+                }
+            }
+        });
+
+        /* --- Trivia Selection --- */
+        function selectOption(element, points) {
+            document.querySelectorAll(".option-item").forEach(el => el.classList.remove("selected"));
+            element.classList.add("selected");
+            
+            const radio = element.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+
+            selectedPoints = points;
+        }
+
+        /* --- Photo Upload --- */
+        document.getElementById("photoInput").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith("image/")) {
+                alert("נא לבחור קובץ תמונה בלבד.");
+                return;
+            }
+
+            const preview = document.getElementById("photoPreview");
+            const mainHero = document.getElementById("mainHeroImage");
+
+            const imgUrl = URL.createObjectURL(file);
+            preview.src = imgUrl;
+            preview.style.display = "block";
+
+            if (mainHero) {
+                mainHero.src = imgUrl;
+            }
+        });
+
+        /* --- Complete Station & Save --- */
+        function completeMission() {
+            if (selectedPoints === null) {
+                alert("אנא בחרו תשובה לשאלת האתגר כדי לשמור את הניקוד.");
+                return;
+            }
+
+            const data = getGameData();
+
+            if (!data.stations) data.stations = {};
+            const prevPoints = data.stations['stream'] ? data.stations['stream'].points : 0;
+            
+            data.stations['stream'] = {
+                completed: true,
+                points: selectedPoints,
+                completedAt: new Date().toISOString()
+            };
+
+            if (!data.scores) data.scores = {};
+            data.scores.stream = selectedPoints;
+            
+            if (!data.completed) data.completed = {};
+            data.completed.stream = true;
+
+            data.totalScore = (data.totalScore || 0) - prevPoints + selectedPoints;
+            data.currentStation = 'balloon.html'; // Station 3 next
+            data.updatedAt = new Date().toISOString();
+
+            saveGameData(data);
+            updateTotalScoreDisplay();
+
+            document.getElementById("completeSuccess").style.display = "block";
+
+            setTimeout(() => {
+                window.location.href = "balloon.html";
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

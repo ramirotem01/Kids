@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#2e7d32">
-    <title>תחנה 2: שבע טחנות והמבנה העתיק - אתגר גני יהושע</title>
-    <meta name="description" content="תחנה 2 במשחק אתגר גני יהושע - שבע טחנות. גלו את המבנה העתיק, צלמו אותו, הקשיבו להדרכה הקולית שבאתר וענו על השאלה כדי לצבור נקודות!">
+    <title>תחנה 2: שבע טחנות - אתגר גני יהושע</title>
+    <meta name="description" content="משימת חוקרים בתחנת שבע טחנות בפארק גני יהושע. צלמו את המבנה העתיק, העזרו בהדרכה הקולית וענו על השאלה.">
     
-    <!-- Google Rubik Font -->
+    <!-- פונט Google Rubik -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -62,7 +62,7 @@
             margin-bottom: 20px;
         }
 
-        /* Top Progress Bar Header */
+        /* Top Progress Bar */
         .progress-header {
             background: #ffffff;
             padding: 12px 20px;
@@ -93,7 +93,7 @@
             gap: 4px;
         }
 
-        /* Trail Progress */
+        /* Progress Bar Section */
         .progress-wrap {
             padding: 12px 20px 0 20px;
         }
@@ -117,7 +117,7 @@
         .progress-bar-fill {
             background: linear-gradient(90deg, var(--primary-light), var(--primary));
             height: 100%;
-            width: 28.57%; /* Station 2 of 7 */
+            width: 28.56%; /* תחנה 2 מתוך 7 */
             border-radius: 10px;
             transition: width 0.4s ease;
         }
@@ -126,7 +126,7 @@
         .hero-image-wrapper {
             position: relative;
             width: 100%;
-            height: 210px;
+            height: 200px;
             margin-top: 12px;
             overflow: hidden;
         }
@@ -140,7 +140,7 @@
         .hero-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #81c784, #388e3c);
+            background: linear-gradient(135deg, #a5d6a7, #66bb6a);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -219,7 +219,7 @@
             margin-bottom: 10px;
         }
 
-        /* Navigation Hint Box */
+        /* Hint Card */
         .hint-box {
             background: #fff8e1;
             border-right: 4px solid #ffb300;
@@ -248,32 +248,38 @@
         .audio-site-box {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             border: 1px solid #90caf9;
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 16px;
+            margin-top: 10px;
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-top: 8px;
+            align-items: center;
+            gap: 14px;
         }
 
         .audio-site-icon {
-            font-size: 2rem;
-            line-height: 1;
+            font-size: 2.2rem;
+            background: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             flex-shrink: 0;
         }
 
-        .audio-site-content h3 {
-            font-size: 1rem;
-            font-weight: 700;
+        .audio-site-text {
+            font-size: 0.88rem;
             color: #0d47a1;
-            margin-bottom: 4px;
+            line-height: 1.4;
         }
 
-        .audio-site-content p {
-            font-size: 0.88rem;
+        .audio-site-text strong {
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 2px;
             color: #1565c0;
-            margin-bottom: 0;
-            line-height: 1.4;
         }
 
         /* Options Group */
@@ -286,8 +292,7 @@
 
         .option-item {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            align-items: flex-start;
             background: #f8f9fa;
             border: 2px solid #e0e0e0;
             border-radius: 14px;
@@ -303,10 +308,10 @@
 
         .option-label {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            font-size: 0.88rem;
+            align-items: flex-start;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.9rem;
             color: #37474f;
             line-height: 1.4;
         }
@@ -314,19 +319,9 @@
         .option-label input[type="radio"] {
             width: 18px;
             height: 18px;
+            margin-top: 2px;
             accent-color: var(--primary);
             flex-shrink: 0;
-        }
-
-        .option-points {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent-hover);
-            background: rgba(255, 152, 0, 0.12);
-            padding: 4px 10px;
-            border-radius: 20px;
-            white-space: nowrap;
-            margin-right: 6px;
         }
 
         /* Photo Upload UI */
@@ -401,17 +396,25 @@
             margin-top: 8px;
         }
 
-        /* Status Alert */
+        /* Status Alerts */
         .status-alert {
             display: none;
-            background: #d8f3dc;
-            color: #075b43;
             padding: 12px;
             border-radius: 12px;
             margin-top: 12px;
             font-weight: 700;
             text-align: center;
             font-size: 0.9rem;
+        }
+
+        .status-alert.success {
+            background: #d8f3dc;
+            color: #075b43;
+        }
+
+        .status-alert.error {
+            background: #ffebee;
+            color: #c62828;
         }
 
         .footer {
@@ -432,7 +435,7 @@
 
     <div class="app-container">
         
-        <!-- Top Bar Header -->
+        <!-- סרגל עליון -->
         <div class="progress-header">
             <div class="logo-badge">
                 <span>🌳</span>
@@ -445,7 +448,7 @@
             </div>
         </div>
 
-        <!-- Trail Progress Bar -->
+        <!-- בר התקדמות -->
         <div class="progress-wrap">
             <div class="progress-label">
                 <span>התקדמות במסלול</span>
@@ -456,119 +459,109 @@
             </div>
         </div>
 
-        <!-- Hero Image -->
+        <!-- תמונת נושא / תצוגת מקום -->
         <div class="hero-image-wrapper">
-            <img id="mainHeroImage" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80" alt="שבע טחנות" class="hero-image" onerror="this.style.display='none'; document.getElementById('heroPlaceholder').style.display='flex';">
-            <div id="heroPlaceholder" class="hero-placeholder" style="display: none;">🏛️🌊</div>
+            <img id="mainHeroImage" src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80" alt="שבע טחנות והמבנה העתיק" class="hero-image" onerror="this.style.display='none'; document.getElementById('heroPlaceholder').style.display='flex';">
+            <div id="heroPlaceholder" class="hero-placeholder" style="display: none;">🏚️🌊</div>
             <div class="hero-overlay"></div>
         </div>
 
         <div class="content-body">
             
-            <!-- Station Title Header -->
+            <!-- כותרת תחנה -->
             <div class="station-header">
                 <span class="station-badge">תחנה 2 מתוך 7</span>
                 <div class="station-title">
-                    <h1>🌊 שבע טחנות והמבנה העתיק</h1>
-                    <p>כוח המים וההיסטוריה של נחל הירקון</p>
+                    <h1>🏚️ שבע טחנות והמבנה העתיק</h1>
+                    <p>מגלים את סודות הטחנה והנחל הזורם!</p>
                 </div>
             </div>
 
-            <!-- Card 1: Location & Navigation Hint -->
+            <!-- כרטיס 1: הוראות הגעה ורמז -->
             <div class="card">
                 <h2>🔎 המשימה שלכם</h2>
                 <p>
-                    הגעתם לאחד המקומות המרתקים והיפים בפארק! כאן פעלו בעבר טחנות קמח עתיקות שניצלו את זרימת מי הירקון.
+                    ברוכים הבאים לתחנה השנייה! הגעתם למקום היסטורי קסום.
+                    מצאו את המבנה העתיק של שבע טחנות העומד על גדות הנחל.
                 </p>
 
                 <div class="hint-box">
                     <div class="hint-header">
                         <span>🗺️</span>
-                        <span>טיפ והוראות הגעה לאתר</span>
+                        <span>רמז והוראות הגעה לתחנה</span>
                     </div>
                     <div class="hint-info">
-                        אם אתם מגיעים מאתר הצפרות, חזרו בשביל ממערב למזרח כ-200 מטר וממשם המשיכו ישר בהליכה רגילה.
-                        <br><br>
-                        🚗 <strong>למגיעים מרחוק (Waze / Moovit):</strong> חפשו <em>"שבע טחנות, רחוב רוקח 84, רמת גן"</em> ומשם ישר בשביל דקות ספורות לאתר.
+                        אם אתם מגיעים מאזור מתחם הצפרות, חזרו בשביל ממערב למזרח כ-200 מטרים וממשכו ישר בהליכה רגילה.
+                        <br>
+                        <strong>בנווטן (Waze / Moovit):</strong> חפשו "שבע טחנות, רחוב רוקח 84, רמת גן" ומשם צעדו ישר בשביל דקות ספורות אל האתר.
                     </div>
                 </div>
             </div>
 
-            <!-- Card 2: Photo Challenge -->
+            <!-- כרטיס 2: הדרכה קולית בשטח -->
             <div class="card">
-                <h2>📸 משימת צילום: המבנה העתיק</h2>
-                <p>
-                    מצאו את המבנה העתיק של טחנת הקמח ליד הנחל וצלמו תמונה משפחתית למזכרת!
-                </p>
+                <h2>🎧 הדרכה קולית בשטח</h2>
+                <p>לפני שנענה על השאלה, הגיע הזמן להקשיב ולהסתקרן!</p>
+
+                <div class="audio-site-box">
+                    <div class="audio-site-icon">🔊</div>
+                    <div class="audio-site-text">
+                        <strong>עמדת שמע קולית באתר</strong>
+                        היכנסו לתוך המבנה מצד שמאל, הקשיבו להדרכה הקולית המושמעת במקום וגלו כיצד פעלה הטחנה!
+                    </div>
+                </div>
+            </div>
+
+            <!-- כרטיס 3: השאלה (ללא הצגת הניקוד ליד האפשרויות) -->
+            <div class="card">
+                <h2>❓ שאלת חוקרים: איך יוצר הקמח?</h2>
+                <p>לאחר שהקשבתם להדרכה והסתכלתם סביבכם, כיצד היו משתמשים במי הנחל כדי לייצר קמח?</p>
+
+                <div class="options-group">
+                    <label class="option-item" onclick="selectOption(this, 'a')">
+                        <div class="option-label">
+                            <input type="radio" name="flourQuestion" value="a">
+                            <span>א. היו משתמשים בכוח המים כדי לסובב אבני ריחיים שטוחנות את גרגרי החיטה לקמח.</span>
+                        </div>
+                    </label>
+
+                    <label class="option-item" onclick="selectOption(this, 'b')">
+                        <div class="option-label">
+                            <input type="radio" name="flourQuestion" value="b">
+                            <span>ב. היו שופכים את גרגרי החיטה לנחל ומחכים שהמים יהפכו אותם לקמח.</span>
+                        </div>
+                    </label>
+
+                    <label class="option-item" onclick="selectOption(this, 'c')">
+                        <div class="option-label">
+                            <input type="radio" name="flourQuestion" value="c">
+                            <span>ג. היו מניחים את החיטה בשמש עד שהיא הופכת לאבקת קמח.</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- כרטיס 4: צילום המבנה העתיק -->
+            <div class="card">
+                <h2>📸 משימת צילום המבנה העתיק</h2>
+                <p>צלמו תמונה של המבנה העתיק של שבע טחנות יחד עם המשפחה למזכרת:</p>
 
                 <label class="photo-uploader">
-                    📷 צלמו את המבנה העתיק או בחרו מהגלריה
+                    📷 צלמו את המבנה העתיק
                     <input type="file" id="photoInput" accept="image/*" capture="environment">
                 </label>
 
-                <img id="photoPreview" alt="תצוגה מקדימה של המבנה העתיק">
+                <img id="photoPreview" alt="תצוגה מקדימה של התמונה">
 
                 <div class="photo-note">
-                    🔒 התמונה נשארת במכשירכם בלבד.
+                    🔒 התמונה נשארת במכשירכם בלבד ואינה נשלחת לשרת.
                 </div>
             </div>
 
-            <!-- Card 3: On-Site Audio Information -->
-            <div class="card">
-                <h2>🎧 הדרכה קולית באתר</h2>
-                <p>
-                    רוצים לשמוע עוד על ההיסטוריה המרתקת של המקום?
-                </p>
-
-                <div class="audio-site-box">
-                    <div class="audio-site-icon">📢</div>
-                    <div class="audio-site-content">
-                        <h3>פעילות קולית בשטח האתר!</h3>
-                        <p>ההדרכה הקולית מופעלת ישירות בשטח: גשו ל<strong>מבנה העתיק מצד שמאל</strong>, שם תוכלו להקשיב לפעילות הקולית!</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4: Trivia Question / Points Challenge -->
-            <div class="card">
-                <h2>❓ שאלת אתגר: כוח המים</h2>
-                <p>
-                    לאחר שצפיתם במבנה והקשבתם להסברים, ענו על השאלה:
-                    <br>
-                    <strong>איך היו משתמשים בנחל כדי לייצר את הקמח?</strong>
-                </p>
-
-                <div class="options-group">
-                    <label class="option-item" onclick="selectOption(this, 10)">
-                        <div class="option-label">
-                            <input type="radio" name="milling" value="10">
-                            <span>א. היו משתמשים בכוח המים כדי לסובב אבני ריחיים שטוחנות את גרגרי החיטה לקמח.</span>
-                        </div>
-                        <div class="option-points">+10 נקודות</div>
-                    </label>
-
-                    <label class="option-item" onclick="selectOption(this, 0)">
-                        <div class="option-label">
-                            <input type="radio" name="milling" value="0">
-                            <span>ב. היו שופכים את גרגרי החיטה לנחל ומחכים שהמים יהפכו אותם לקמח.</span>
-                        </div>
-                        <div class="option-points">0 נקודות</div>
-                    </label>
-
-                    <label class="option-item" onclick="selectOption(this, 0)">
-                        <div class="option-label">
-                            <input type="radio" name="milling" value="0">
-                            <span>ג. היו מניחים את החיטה בשמש עד שהיא הופכת לאבקת קמח.</span>
-                        </div>
-                        <div class="option-points">0 נקודות</div>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Card 5: Complete & Save -->
+            <!-- כרטיס 5: סיום ושמירה -->
             <div class="card">
                 <h2>✅ סיימתם את התחנה?</h2>
-                <p>בדקו שבחרתם תשובה, שמרו את התוצאה והמשיכו לתחנה הבאה במסלול.</p>
+                <p>בדקו שבחרתם תשובה, שמרו את התוצאה והמשיכו לתחנה הבאה.</p>
 
                 <button class="btn btn-primary" onclick="completeMission()">
                     <span>שמרו ניקוד והמשיכו לתחנה 3</span>
@@ -579,8 +572,11 @@
                     🔙 חזרה למסך הראשי
                 </button>
 
-                <div class="status-alert" id="completeSuccess">
-                    🎉 התוצאה נשמרה בהצלחה! מעביר לתחנה הבאה...
+                <div class="status-alert success" id="completeSuccess">
+                    🎉 כל הכבוד! התשובה נשמרה בהצלחה. מעביר לתחנה הבאה...
+                </div>
+                <div class="status-alert error" id="completeError">
+                    אנא בחרו תשובה לשאלה לפני שממשיכים!
                 </div>
             </div>
 
@@ -593,10 +589,10 @@
         </div>
     </div>
 
+    <!-- לוגיקת JavaScript -->
     <script>
-        let selectedPoints = null;
+        let selectedAnswer = null;
 
-        /* --- LocalStorage Sync --- */
         function getGameData() {
             try {
                 const primaryData = JSON.parse(localStorage.getItem("parkChallenge_game") || "{}");
@@ -627,37 +623,38 @@
         document.addEventListener("DOMContentLoaded", () => {
             updateTotalScoreDisplay();
 
-            // Restore previously selected trivia answer if available
+            // שחזור תשובה שנבחרה בעבר במידה וקיים
             const data = getGameData();
-            let savedScore = null;
+            let savedAnswer = null;
 
             if (data.stations && data.stations['stream']) {
-                savedScore = data.stations['stream'].points;
-            } else if (data.scores && data.scores.stream !== undefined) {
-                savedScore = data.scores.stream;
+                savedAnswer = data.stations['stream'].answer;
+            } else if (data.answers && data.answers.stream) {
+                savedAnswer = data.answers.stream;
             }
 
-            if (savedScore !== null) {
-                const radio = document.querySelector(`input[name="milling"][value="${savedScore}"]`);
+            if (savedAnswer) {
+                const radio = document.querySelector(`input[name="flourQuestion"][value="${savedAnswer}"]`);
                 if (radio) {
                     radio.checked = true;
-                    selectOption(radio.closest('.option-item'), Number(savedScore));
+                    selectOption(radio.closest('.option-item'), savedAnswer);
                 }
             }
         });
 
-        /* --- Trivia Selection --- */
-        function selectOption(element, points) {
+        /* --- בחירת תשובה --- */
+        function selectOption(element, answerVal) {
             document.querySelectorAll(".option-item").forEach(el => el.classList.remove("selected"));
             element.classList.add("selected");
             
             const radio = element.querySelector('input[type="radio"]');
             if (radio) radio.checked = true;
 
-            selectedPoints = points;
+            selectedAnswer = answerVal;
+            document.getElementById("completeError").style.display = "none";
         }
 
-        /* --- Photo Upload --- */
+        /* --- העלאת תמונה מקומית --- */
         document.getElementById("photoInput").addEventListener("change", function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -679,37 +676,45 @@
             }
         });
 
-        /* --- Complete Station & Save --- */
+        /* --- שמירה ומעבר לתחנה הבאה --- */
         function completeMission() {
-            if (selectedPoints === null) {
-                alert("אנא בחרו תשובה לשאלת האתגר כדי לשמור את הניקוד.");
+            if (!selectedAnswer) {
+                document.getElementById("completeError").style.display = "block";
                 return;
             }
 
+            // חישוב ניקוד: 10 נקודות על תשובה נכונה (א'), 3 נקודות על השתתפות בניסיון אחר
+            const pointsEarned = (selectedAnswer === 'a') ? 10 : 3;
+
             const data = getGameData();
 
+            // עדכון נתונים במבנה 1
             if (!data.stations) data.stations = {};
             const prevPoints = data.stations['stream'] ? data.stations['stream'].points : 0;
             
             data.stations['stream'] = {
                 completed: true,
-                points: selectedPoints,
+                points: pointsEarned,
+                answer: selectedAnswer,
                 completedAt: new Date().toISOString()
             };
 
+            // עדכון נתונים במבנה 2 (תאימות מלאה)
             if (!data.scores) data.scores = {};
-            data.scores.stream = selectedPoints;
+            data.scores.stream = pointsEarned;
             
             if (!data.completed) data.completed = {};
             data.completed.stream = true;
 
-            data.totalScore = (data.totalScore || 0) - prevPoints + selectedPoints;
-            data.currentStation = 'balloon.html'; // Station 3 next
+            // חישוב סך הניקוד
+            data.totalScore = (data.totalScore || 0) - prevPoints + pointsEarned;
+            data.currentStation = 'balloon.html'; // מעבר לתחנה 3
             data.updatedAt = new Date().toISOString();
 
             saveGameData(data);
             updateTotalScoreDisplay();
 
+            document.getElementById("completeError").style.display = "none";
             document.getElementById("completeSuccess").style.display = "block";
 
             setTimeout(() => {

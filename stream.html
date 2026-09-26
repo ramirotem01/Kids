@@ -405,6 +405,7 @@
             font-weight: 700;
             text-align: center;
             font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .status-alert.success {
@@ -415,6 +416,12 @@
         .status-alert.error {
             background: #ffebee;
             color: #c62828;
+        }
+
+        .status-alert.warning {
+            background: #fff3e0;
+            color: #e65100;
+            border: 1px solid #ffe0b2;
         }
 
         .footer {
@@ -512,7 +519,7 @@
                 </div>
             </div>
 
-            <!-- כרטיס 3: השאלה (ללא הצגת הניקוד ליד האפשרויות) -->
+            <!-- כרטיס 3: השאלה -->
             <div class="card">
                 <h2>❓ שאלת חוקרים: איך יוצר הקמח?</h2>
                 <p>לאחר שהקשבתם להדרכה והסתכלתם סביבכם, כיצד היו משתמשים במי הנחל כדי לייצר קמח?</p>
@@ -538,6 +545,10 @@
                             <span>ג. היו מניחים את החיטה בשמש עד שהיא הופכת לאבקת קמח.</span>
                         </div>
                     </label>
+                </div>
+
+                <div class="status-alert warning" id="wrongAnswerAlert">
+                    💡 <strong>תשובה לא מדויקת.</strong> המים מסובבים את אבני הריחיים! נסו שוב לקבלת הניקוד המלא (10 נק').
                 </div>
             </div>
 
@@ -651,7 +662,18 @@
             if (radio) radio.checked = true;
 
             selectedAnswer = answerVal;
-            document.getElementById("completeError").style.display = "none";
+            
+            const wrongAlert = document.getElementById("wrongAnswerAlert");
+            const completeError = document.getElementById("completeError");
+
+            if (completeError) completeError.style.display = "none";
+
+            // הצגת הודעת שגיאה מידית במידה ונבחרה תשובה לא נכונה
+            if (selectedAnswer !== 'a') {
+                if (wrongAlert) wrongAlert.style.display = "block";
+            } else {
+                if (wrongAlert) wrongAlert.style.display = "none";
+            }
         }
 
         /* --- העלאת תמונה מקומית --- */
@@ -715,6 +737,7 @@
             updateTotalScoreDisplay();
 
             document.getElementById("completeError").style.display = "none";
+            document.getElementById("wrongAnswerAlert").style.display = "none";
             document.getElementById("completeSuccess").style.display = "block";
 
             setTimeout(() => {
